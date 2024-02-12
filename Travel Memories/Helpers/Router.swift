@@ -7,36 +7,54 @@
 
 import UIKit
 
-protocol RouterMain {
+protocol RouterMainProperties {
+    
     var navigationController: UINavigationController? { get set }
     var assemblyBuilder: AssemblerProtocol? { get set }
 }
 
-protocol RouterProtocol: RouterMain {
+protocol RouterProtocol: RouterMainProperties {
+    init(navigationController: UINavigationController, assemblyBuilder: AssemblerProtocol)
+    init(navigationController: UINavigationController)
+
+
     func initialViewController()
-//    func showDetail(comment: Comment?)
-//    func popToRoot()
+    func showAddViewController()
+    func popToRoot()
 }
 
 class Router: RouterProtocol {
     
-
-    
     var navigationController: UINavigationController?
-    
     var assemblyBuilder: AssemblerProtocol?
     
-    init(navigationController: UINavigationController, assemblyBuilder: AssemblerProtocol) {
+    required init(navigationController: UINavigationController, assemblyBuilder: AssemblerProtocol) {
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
     }
+    required init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
     
     func initialViewController() {
+        
         if let navigationController = navigationController {
             guard let mainVC = assemblyBuilder?.createMainModule(router: self) else { return }
             navigationController.viewControllers = [mainVC]
         }
     }
     
+    func showAddViewController() {
+        
+        if let navigationController = navigationController {
+            guard let detailVC = assemblyBuilder?.createDetailModule(router: self) else { return }
+            navigationController.pushViewController(detailVC, animated: true)
+        }
+    }
     
+    func popToRoot() {
+        if let navigationController = navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
+    }
 }

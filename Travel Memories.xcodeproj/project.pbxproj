@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0B415681906EF62BBD6E2D75 /* Pods_Travel_Memories_Travel_MemoriesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906D370EACA10793FC906C /* Pods_Travel_Memories_Travel_MemoriesUITests.framework */; };
+		1159D6872B783F2C00CE92E4 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D6862B783F2C00CE92E4 /* AddViewController.swift */; };
+		1159D6892B78414C00CE92E4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D6882B78414C00CE92E4 /* CustomTextField.swift */; };
+		1159D68C2B78498C00CE92E4 /* AddPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D68B2B78498C00CE92E4 /* AddPresenter.swift */; };
+		1159D68E2B785AC500CE92E4 /* ElementsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D68D2B785AC500CE92E4 /* ElementsBuilder.swift */; };
 		1182F1AD2B75DA0E0018BA76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F1AC2B75DA0E0018BA76 /* AppDelegate.swift */; };
 		1182F1AF2B75DA0E0018BA76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F1AE2B75DA0E0018BA76 /* SceneDelegate.swift */; };
 		1182F1B12B75DA0E0018BA76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F1B02B75DA0E0018BA76 /* ViewController.swift */; };
@@ -45,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1159D6862B783F2C00CE92E4 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		1159D6882B78414C00CE92E4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		1159D68B2B78498C00CE92E4 /* AddPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPresenter.swift; sourceTree = "<group>"; };
+		1159D68D2B785AC500CE92E4 /* ElementsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsBuilder.swift; sourceTree = "<group>"; };
 		1182F1A92B75DA0E0018BA76 /* Travel Memories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Travel Memories.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1182F1AC2B75DA0E0018BA76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1182F1AE2B75DA0E0018BA76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +121,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1159D68A2B7843A300CE92E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1159D6882B78414C00CE92E4 /* CustomTextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		1182F1A02B75DA0E0018BA76 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +155,7 @@
 		1182F1AB2B75DA0E0018BA76 /* Travel Memories */ = {
 			isa = PBXGroup;
 			children = (
+				1182F1B02B75DA0E0018BA76 /* ViewController.swift */,
 				11BDEDA42B76E1BF005EEFB5 /* Application */,
 				11BDEDA82B76EF85005EEFB5 /* Models */,
 				11BDEDA62B76EF6A005EEFB5 /* ViewControllers */,
@@ -188,8 +205,9 @@
 		11BDEDA62B76EF6A005EEFB5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				1182F1B02B75DA0E0018BA76 /* ViewController.swift */,
 				11BDEDB02B76F359005EEFB5 /* MainViewController.swift */,
+				1159D6862B783F2C00CE92E4 /* AddViewController.swift */,
+				1159D68A2B7843A300CE92E4 /* Views */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -198,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				11BDEDB42B770F6D005EEFB5 /* MainPresenter.swift */,
+				1159D68B2B78498C00CE92E4 /* AddPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -206,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				11BDEDB22B770271005EEFB5 /* TripModel.swift */,
-				11BDEDB62B7722F0005EEFB5 /* ModelManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,6 +234,8 @@
 			children = (
 				11BDEDAC2B76F1F4005EEFB5 /* Router.swift */,
 				11BDEDAE2B76F1FD005EEFB5 /* Assembler.swift */,
+				1159D68D2B785AC500CE92E4 /* ElementsBuilder.swift */,
+				11BDEDB62B7722F0005EEFB5 /* ModelManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -474,10 +494,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1159D68E2B785AC500CE92E4 /* ElementsBuilder.swift in Sources */,
+				1159D6872B783F2C00CE92E4 /* AddViewController.swift in Sources */,
+				1159D6892B78414C00CE92E4 /* CustomTextField.swift in Sources */,
 				11BDEDAD2B76F1F4005EEFB5 /* Router.swift in Sources */,
 				1182F1B12B75DA0E0018BA76 /* ViewController.swift in Sources */,
 				11BDEDAF2B76F1FD005EEFB5 /* Assembler.swift in Sources */,
 				11BDEDB52B770F6D005EEFB5 /* MainPresenter.swift in Sources */,
+				1159D68C2B78498C00CE92E4 /* AddPresenter.swift in Sources */,
 				11BDEDB32B770271005EEFB5 /* TripModel.swift in Sources */,
 				11BDEDB72B7722F0005EEFB5 /* ModelManager.swift in Sources */,
 				1182F1AD2B75DA0E0018BA76 /* AppDelegate.swift in Sources */,

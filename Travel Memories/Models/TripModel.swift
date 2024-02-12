@@ -11,28 +11,44 @@ import RealmSwift
 
 class UserAccountInfo: Object {
     @objc dynamic var name: String?
-    @objc dynamic var userImage: UIImage?
+    dynamic var userImage: UIImage?
 }
 
 
-// Определение сущности "User"
-class TripsModel: Object {
+class CityModel: Object {
     
     @objc dynamic var id = UUID().uuidString
-    @objc dynamic var name = ""
-    
-    let posts = List<CityModel>()
+    @objc dynamic var nameOfCity: String!
+    @objc dynamic var imageOfCity: NSData?
+    // RealmSwift не поддерживает напрямую хранение UIImage в базе данных.
+    var image: UIImage? {
+        get {
+            guard let data = imageOfCity else { return nil }
+            return UIImage(data: data as Data)
+        }
+        set {
+            imageOfCity = newValue?.pngData() as NSData?
+        }
+    }
+
+    let posts = List<TripMode>()
     
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+    convenience init(imageOfCity: UIImage?, nameOfCity: String) {
+        self.init()
+        self.nameOfCity = nameOfCity
+        self.image = imageOfCity
+    }
 }
-// Определение сущности "Post"
-class CityModel: Object {
+
+class TripMode: Object {
     
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var dateOfVisit: Date?
-    @objc dynamic var imagesFromTrip: [UIImage]?
+    dynamic var imagesFromTrip: [UIImage]?
     @objc dynamic var content = ""
     
     override static func primaryKey() -> String? {

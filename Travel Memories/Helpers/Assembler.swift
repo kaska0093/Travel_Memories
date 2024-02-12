@@ -8,24 +8,29 @@
 import UIKit
 
 protocol AssemblerProtocol {
+    
     func createMainModule(router: RouterProtocol) -> UIViewController
-    func createDetailModule() -> UIViewController  //(comment: Comment?,  router: RouterProtocol)
+    func createDetailModule(router: RouterProtocol) -> UIViewController  //(comment: Comment?,  router: RouterProtocol)
 }
 
 class Assembler: AssemblerProtocol {
     
     func createMainModule(router: RouterProtocol) -> UIViewController {
-        // внедрение зависимостей
-        // создаются не внутри сущностей, а снаружи
-        // делаем инъекцию извне
         let view = MainViewController()
-        //let networkService = NetworkService()
-        //let presenter = MainPresenter(view: view, networkServise: networkService, router: router)//инжект снаружи для возможности тестирования
-        // и SOLID так говорит
-        //view.presenter = presenter
+        let modelManager = ModelManager()
+        let presenter = MainPresenter(view: view, modelManager: modelManager, router: router)
+        view.presenter = presenter
         return view
     }
     
+    func createDetailModule(router: RouterProtocol) -> UIViewController {
+        let view = AddViewController()
+        let modelManager = ModelManager()
+        let presenter = AddPresenter(view: view, modelManager: modelManager, router: router)
+        view.presenter = presenter
+        return view
+    }
+     
     func createDetailModule() -> UIViewController {
         return MainViewController()
     }

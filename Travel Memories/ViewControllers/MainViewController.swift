@@ -10,6 +10,8 @@ import SnapKit
 
 //MARK: - MainViewController
 final class MainViewController: UIViewController {
+
+    var presenter: MainPresenterOutputProtocol!
     
     //MARK: - Private Property
 
@@ -22,17 +24,21 @@ final class MainViewController: UIViewController {
         title = "Travel memories"
         navigationController?.navigationBar.prefersLargeTitles = true
         setupView()
-        
     }
+    
     override func viewDidLayoutSubviews() {
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        presenter.getAllCitis()
+        tableView.reloadData()
+    }
+    
     //MARK: - Lazy Property
-    lazy var userName: UILabel = {
-        let label = UILabel()
-        return label
-    }()
+
+    lazy var userName = ElementsBuilder.createLabel(withText: "Nikita")
+    // label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
     
     lazy var userImage: UIImageView = {
         let imageView = UIImageView()
@@ -43,44 +49,15 @@ final class MainViewController: UIViewController {
         return imageView
     }()
     
-    func addGradient(view: UIView, colors: [UIColor], locations: [NSNumber]) {
-        let gradientLayer = CAGradientLayer()
-        //gradientLayer.startPoint = .init(x: 0, y: 0)
-        //gradientLayer.endPoint = .init(x: -300, y: 0)
-
-        gradientLayer.frame = view.bounds
-        let cgColors = colors.map { $0.cgColor }
-        
-        gradientLayer.colors = cgColors
-        gradientLayer.locations = locations
-        //gradientLayer.type = .radial
-        
-        view.layer.insertSublayer(gradientLayer, at: 0)
-    }
+    lazy var tableView: UITableView = ElementsBuilder.createMainTableView()
+    
     
     //MARK: - Actions
     @objc private func addNewCity() {
-        
+        presenter.addButtonPressed()
     }
     
-    //MARK: - MenuSettings
-    func menuItemAdd() -> UIMenu {
-        
-        let addMenuItems = UIMenu(title: "", options: .displayInline, children: [
-            UIAction(title: "Statistika", image: UIImage(systemName: "trash")) {_ in
-                print("")
-            },
-            
-            UIAction(title: "Add ", image: UIImage(systemName: "trash")) {_ in
-                print("")
-            },
-            
-            UIAction(title: "Add ", image: UIImage(systemName: "trash")) {_ in
-                print("")
-            }
-        ])
-        return addMenuItems
-    }
+
 }
 
 //MARK: - superView settings
@@ -113,24 +90,24 @@ private extension MainViewController {
     
 }
 
-//MARK: -  methods of UI elements settings
+//MARK: - UI elements settings
 private extension MainViewController {
     // методы по настройке элементов интерфейса
     func addSubViews() {
         
         view.addSubview(userName)
         view.addSubview(userImage)
-        //view.addSubview(colorView)
+        view.addSubview(tableView)
     }
     
     func addActions() {
         //eyeButton.addTarget(self, action: #selector(displayBookMarks), for: .touchUpInside)
     }
     
-    ///  some documentation
     func setupElements() {
-       // <#statements#>.delegate = self
-        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")     
     }
 }
 
@@ -144,27 +121,147 @@ private extension MainViewController {
 
     }
     
-    
     func setupLayout() {
-//        userName.translatesAutoresizingMaskIntoConstraints = false
-//        userImage.translatesAutoresizingMaskIntoConstraints = false
         
         userImage.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.trailing.equalToSuperview().inset(50)
             make.size.width.height.equalTo(100)
-            
-            print(view.frame.size.height)  // 852
-            print(view.bounds.size.height)
-            print(view.safeAreaLayoutGuide.layoutFrame.height)
-            
-            //make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(y)
-            make.top.equalToSuperview().inset(view.bounds.height * UIConstats.imageViewTopSpacing - 50)
+            make.centerY.equalTo(view.bounds.height * UIConstats.imageViewTopSpacing)
 
         }
+        userName.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(20)
+            make.top.equalTo(view.snp_topMargin).inset(20)
+        }
+        tableView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalTo(userImage.snp.bottom).inset(-80)
+            make.bottom.equalToSuperview().inset(50)
+        }
+    }
+}
+
+//MARK: - MainViewOutputProtocol
+extension MainViewController: MainViewOutputProtocol {
+    func success() {
+        presenter.getAllCitis()
+        tableView.reloadData()
+    }
+    
+    func failure() {
+        //
     }
     
     
 }
+
+//MARK: - UITableViewDataSource
+extension MainViewController:  UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter.citys?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = UIColor(red: 1, green: 0, blue: 1, alpha: 0.1)
+        cell.layer.cornerRadius = 15
+
+        
+        var content = cell.defaultContentConfiguration()
+        
+        if let imageData = presenter.citys?[indexPath.row].imageOfCity {
+            content.image = UIImage(data: imageData as Data)
+        }
+        content.text = presenter.citys?[indexPath.row].nameOfCity
+        content.secondaryText = presenter.citys?[indexPath.row].nameOfCity
+        
+        content.imageProperties.cornerRadius = cell.frame.size.height / 2
+        content.textProperties.color = .red
+        
+        cell.contentConfiguration = content
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    //MARK: - SwipeActionsConfiguration
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { (action, view, completionHandler) in
+            
+            if let index = self.presenter.citys?[indexPath.row].id {
+                self.presenter.deleteCertainObject(id: index )
+            }
+        completionHandler(true)
+        }
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = false // чтобы вызывать свайп только из левой части ячейки
+        
+        return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal, title: "Редактировать") { (action, view, completionHandler) in
+            // Добавьте ваш код для редактирования ячейки здесь
+            completionHandler(true)
+        }
+        let pinAction = UIContextualAction(style: .normal, title: "Закрепить") { (action, view, completionHandler) in
+            // Добавьте ваш код для редактирования ячейки здесь
+            view.backgroundColor = .blue
+            completionHandler(true)
+        }
+        
+        let configuration = UISwipeActionsConfiguration(actions: [editAction, pinAction])
+        configuration.performsFirstActionWithFullSwipe = false // чтобы вызывать свайп только из левой части ячейки
+        
+        return configuration
+    }
+}
+
+extension MainViewController {
+    //MARK: - Gradient
+    func addGradient(view: UIView, colors: [UIColor], locations: [NSNumber]) {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        
+        let cgColors = colors.map { $0.cgColor }
+        
+        gradientLayer.colors = cgColors
+        gradientLayer.locations = locations
+        
+        view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    //MARK: - MenuSettings
+    func menuItemAdd() -> UIMenu {
+        
+        let addMenuItems = UIMenu(title: "", options: .displayInline, children: [
+            UIAction(title: "Delete all", image: UIImage(systemName: "trash")) {_ in
+                self.presenter.cleanAll()
+                self.tableView.reloadData()
+            },
+            
+            UIAction(title: "___ ", image: UIImage(systemName: "trash")) {_ in
+                print("")
+            },
+            
+            UIAction(title: "___ ", image: UIImage(systemName: "trash")) {_ in
+                print("")
+            }
+        ])
+        return addMenuItems
+    }
+}
+
 
 
 //// Создание UI элемента
@@ -181,3 +278,9 @@ private extension MainViewController {
 //// Создание NSLayoutConstraint для размещения UI элемента на расстоянии 0.2 в соотношении с высотой экрана
 //let topConstraint = NSLayoutConstraint(item: myView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: view.bounds.height * 0.2)
 //view.addConstraint(topConstraint)
+
+
+
+//print(view.frame.size.height)  // 852
+//print(view.bounds.size.height)
+//print(view.safeAreaLayoutGuide.layoutFrame.height)
