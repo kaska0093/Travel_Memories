@@ -11,8 +11,6 @@ class AddViewController: UIViewController {
     
     var presenter: AddPresenterOutputProtocol!
 
-    
-
 //MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()

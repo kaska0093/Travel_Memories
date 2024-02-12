@@ -3,4 +3,54 @@
    uuid = "237A7C53-E62C-46F9-9FE2-F1D4B4AA9426"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC2CF60D-5843-400F-BDD6-B910B474C349"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Travel Memories/ViewControllers/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "imageViewTapped()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FC2CF60D-5843-400F-BDD6-B910B474C349 - 5376ef3563656e36"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Travel_Memories.MainViewController.imageViewTapped() -&gt; ()"
+                  moduleName = "Travel Memories"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikita/Desktop/Travel%20Memories/Travel%20Memories/ViewControllers/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "285"
+                  endingLineNumber = "285"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "FC2CF60D-5843-400F-BDD6-B910B474C349 - 5376ef3563656f70"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Travel_Memories.MainViewController.imageViewTapped() -&gt; ()"
+                  moduleName = "Travel Memories"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nikita/Desktop/Travel%20Memories/Travel%20Memories/ViewControllers/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "291"
+                  endingLineNumber = "291"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

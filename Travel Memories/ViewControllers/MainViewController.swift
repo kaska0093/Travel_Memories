@@ -24,6 +24,7 @@ final class MainViewController: UIViewController {
         title = "Travel memories"
         navigationController?.navigationBar.prefersLargeTitles = true
         setupView()
+        register3DforImageView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -250,8 +251,8 @@ extension MainViewController {
                 self.tableView.reloadData()
             },
             
-            UIAction(title: "___ ", image: UIImage(systemName: "trash")) {_ in
-                print("")
+            UIAction(title: "detail VC", image: UIImage(systemName: "trash")) {_ in
+                self.presenter.showDetailPressed()
             },
             
             UIAction(title: "___ ", image: UIImage(systemName: "trash")) {_ in
@@ -261,6 +262,47 @@ extension MainViewController {
         return addMenuItems
     }
 }
+
+//MARK: - 3D Touch
+extension MainViewController: UIContextMenuInteractionDelegate {
+    
+    func register3DforImageView() {
+        // Добавляем интеракцию для обработки 3D Touch
+        let interaction = UIContextMenuInteraction(delegate: self)
+        userImage.addInteraction(interaction)
+        
+        // Добавляем жест нажатия для нормальных нажатий
+        userImage.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        userImage.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func imageViewTapped() {
+        let alertController = UIAlertController(title: "Заголовок", message: "Ваше сообщение", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        let actionProvider: ([UIMenuElement]) -> UIMenu? = { _ in
+            let title = "3D Touch Detected"
+            let action = UIAction(title: title, handler: { _ in
+                let alertController = UIAlertController(title: title, message: "Вы нажали с силой", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
+            })
+            return UIMenu(title: "", children: [action])
+        }
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: actionProvider)
+    }
+}
+
+
 
 
 

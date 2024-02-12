@@ -12,6 +12,9 @@
 		1159D6892B78414C00CE92E4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D6882B78414C00CE92E4 /* CustomTextField.swift */; };
 		1159D68C2B78498C00CE92E4 /* AddPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D68B2B78498C00CE92E4 /* AddPresenter.swift */; };
 		1159D68E2B785AC500CE92E4 /* ElementsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D68D2B785AC500CE92E4 /* ElementsBuilder.swift */; };
+		115E05F62B7AAEF100118D73 /* DatailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E05F52B7AAEF100118D73 /* DatailPresenter.swift */; };
+		115E05F82B7AAFB600118D73 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E05F72B7AAFB600118D73 /* DetailViewController.swift */; };
+		115E05FA2B7AC1D400118D73 /* CustomCell_CV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E05F92B7AC1D400118D73 /* CustomCell_CV.swift */; };
 		1182F1AD2B75DA0E0018BA76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F1AC2B75DA0E0018BA76 /* AppDelegate.swift */; };
 		1182F1AF2B75DA0E0018BA76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F1AE2B75DA0E0018BA76 /* SceneDelegate.swift */; };
 		1182F1B12B75DA0E0018BA76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F1B02B75DA0E0018BA76 /* ViewController.swift */; };
@@ -53,6 +56,9 @@
 		1159D6882B78414C00CE92E4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		1159D68B2B78498C00CE92E4 /* AddPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPresenter.swift; sourceTree = "<group>"; };
 		1159D68D2B785AC500CE92E4 /* ElementsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsBuilder.swift; sourceTree = "<group>"; };
+		115E05F52B7AAEF100118D73 /* DatailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatailPresenter.swift; sourceTree = "<group>"; };
+		115E05F72B7AAFB600118D73 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		115E05F92B7AC1D400118D73 /* CustomCell_CV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell_CV.swift; sourceTree = "<group>"; };
 		1182F1A92B75DA0E0018BA76 /* Travel Memories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Travel Memories.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1182F1AC2B75DA0E0018BA76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1182F1AE2B75DA0E0018BA76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				1159D6882B78414C00CE92E4 /* CustomTextField.swift */,
+				115E05F92B7AC1D400118D73 /* CustomCell_CV.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +214,7 @@
 			children = (
 				11BDEDB02B76F359005EEFB5 /* MainViewController.swift */,
 				1159D6862B783F2C00CE92E4 /* AddViewController.swift */,
+				115E05F72B7AAFB600118D73 /* DetailViewController.swift */,
 				1159D68A2B7843A300CE92E4 /* Views */,
 			);
 			path = ViewControllers;
@@ -217,6 +225,7 @@
 			children = (
 				11BDEDB42B770F6D005EEFB5 /* MainPresenter.swift */,
 				1159D68B2B78498C00CE92E4 /* AddPresenter.swift */,
+				115E05F52B7AAEF100118D73 /* DatailPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -495,6 +504,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1159D68E2B785AC500CE92E4 /* ElementsBuilder.swift in Sources */,
+				115E05FA2B7AC1D400118D73 /* CustomCell_CV.swift in Sources */,
+				115E05F62B7AAEF100118D73 /* DatailPresenter.swift in Sources */,
 				1159D6872B783F2C00CE92E4 /* AddViewController.swift in Sources */,
 				1159D6892B78414C00CE92E4 /* CustomTextField.swift in Sources */,
 				11BDEDAD2B76F1F4005EEFB5 /* Router.swift in Sources */,
@@ -505,6 +516,7 @@
 				11BDEDB32B770271005EEFB5 /* TripModel.swift in Sources */,
 				11BDEDB72B7722F0005EEFB5 /* ModelManager.swift in Sources */,
 				1182F1AD2B75DA0E0018BA76 /* AppDelegate.swift in Sources */,
+				115E05F82B7AAFB600118D73 /* DetailViewController.swift in Sources */,
 				11BDEDB12B76F359005EEFB5 /* MainViewController.swift in Sources */,
 				1182F1AF2B75DA0E0018BA76 /* SceneDelegate.swift in Sources */,
 			);

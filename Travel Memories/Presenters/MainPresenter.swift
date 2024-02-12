@@ -21,6 +21,7 @@ protocol MainPresenterOutputProtocol: AnyObject {
     var citys: [CityModel]? { get set }
     
     func addButtonPressed()
+    func showDetailPressed()
     func getAllCitis()
     func cleanAll()
     func deleteCertainObject(id: String)
@@ -30,6 +31,8 @@ protocol MainPresenterOutputProtocol: AnyObject {
 
 //MARK: - MainPresenterOutputProtocol
 class MainPresenter: MainPresenterOutputProtocol {
+
+    
     
     var citys: [CityModel]?
     
@@ -75,4 +78,7 @@ class MainPresenter: MainPresenterOutputProtocol {
     func addButtonPressed() {
         router?.showAddViewController()
     }  
+    func showDetailPressed() {
+        router?.showDetailViewController()
+    }
 }
