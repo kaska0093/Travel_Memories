@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 import SnapKit
 
 //MARK: - MainViewController
@@ -23,28 +24,43 @@ final class MainViewController: UIViewController {
         view.backgroundColor = .red
         title = "Travel memories"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
         setupView()
         register3DforImageView()
+        
+        
+        let group = DispatchGroup()
+        let serialQueue = DispatchQueue(label: "ru.nikita_shestakov_best-queue")
+        let workItem1: DispatchWorkItem?
+        workItem1 = DispatchWorkItem {
+            self.presenter.getUserInfo()
+        }
+        if let workItem1 {
+            serialQueue.async(group: group, execute: workItem1)
+            group.notify(queue: DispatchQueue.main) { [self] in
+                loadUserInfo()
+            }
+        }
     }
     
-    override func viewDidLayoutSubviews() {
-        setupView()
-    }
+//    override func viewDidLayoutSubviews() {
+//        setupView()
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
+
         presenter.getAllCitis()
         tableView.reloadData()
     }
     
     //MARK: - Lazy Property
 
-    lazy var userName = ElementsBuilder.createLabel(withText: "Nikita")
+    lazy var userName = ElementsBuilder.createLabel(withText: "")
     // label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
     
     lazy var userImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "defaultUser")
         imageView.layer.cornerRadius = 50
         imageView.clipsToBounds = true
         return imageView
@@ -57,8 +73,6 @@ final class MainViewController: UIViewController {
     @objc private func addNewCity() {
         presenter.addButtonPressed()
     }
-    
-
 }
 
 //MARK: - superView settings
@@ -119,7 +133,6 @@ private extension MainViewController {
     
     private enum UIConstats {
         static let imageViewTopSpacing = 0.25
-
     }
     
     func setupLayout() {
@@ -144,13 +157,23 @@ private extension MainViewController {
 
 //MARK: - MainViewOutputProtocol
 extension MainViewController: MainViewOutputProtocol {
-    func success() {
-        presenter.getAllCitis()
+    
+    func loadUserInfo() {
+        userName.text = presenter.userAccountInfo?.name
+        
+        if presenter.userAccountInfo?.image == nil {
+            userImage.image = UIImage(named: "2")
+        } else {
+            userImage.image = presenter.userAccountInfo?.image
+        }
+    }
+    
+    func success_Reload_TableView() {
         tableView.reloadData()
     }
     
     func failure() {
-        //
+        
     }
     
     
@@ -212,11 +235,12 @@ extension MainViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal, title: "Редактировать") { (action, view, completionHandler) in
             // Добавьте ваш код для редактирования ячейки здесь
+            action.backgroundColor = .green // Устанавливаем желаемый цвет фона
             completionHandler(true)
         }
         let pinAction = UIContextualAction(style: .normal, title: "Закрепить") { (action, view, completionHandler) in
             // Добавьте ваш код для редактирования ячейки здесь
-            view.backgroundColor = .blue
+            action.backgroundColor = .yellow // Устанавливаем желаемый цвет фона
             completionHandler(true)
         }
         
@@ -255,8 +279,8 @@ extension MainViewController {
                 self.presenter.showDetailPressed()
             },
             
-            UIAction(title: "___ ", image: UIImage(systemName: "trash")) {_ in
-                print("")
+            UIAction(title: "get users ", image: UIImage(systemName: "trash")) {_ in
+                self.presenter.getUserInfo()
             }
         ])
         return addMenuItems
@@ -278,7 +302,8 @@ extension MainViewController: UIContextMenuInteractionDelegate {
     }
     
     @objc func imageViewTapped() {
-        let alertController = UIAlertController(title: "Заголовок", message: "Ваше сообщение", preferredStyle: .alert)
+        
+        let alertController = UIAlertController(title: "Демонстрация", message: "Простого касания", preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
@@ -286,43 +311,135 @@ extension MainViewController: UIContextMenuInteractionDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
+    
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
                                 configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        let actionProvider: ([UIMenuElement]) -> UIMenu? = { _ in
-            let title = "3D Touch Detected"
-            let action = UIAction(title: title, handler: { _ in
-                let alertController = UIAlertController(title: title, message: "Вы нажали с силой", preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true, completion: nil)
-            })
-            return UIMenu(title: "", children: [action])
+        
+        let outerMenuAction1 = UIAction(title: "Test button", image: nil) { _ in }
+        let outerMenuAction = UIAction(title: "Name change", image: nil) { _ in
+            
+
+            
+            let alertController = UIAlertController(title: "new name", message: "enter new name", preferredStyle: .alert)
+            
+            let saveTask = UIAlertAction(title: "Save", style: .default) { [self] action in
+                var textField = (alertController.textFields?.first)!
+                textField.placeholder = "New profile name"
+                
+                if let name = textField.text {
+                    self.presenter.saveUserInfo(name: name, image: self.userImage.image)
+                }
+            }
+            alertController.addTextField()
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            alertController.addAction(saveTask)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
         }
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: actionProvider)
+        
+        let outerMenu = UIMenu(title: "Редактировавние профиля", children: [outerMenuAction])
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+               
+            let innerMenuAction = UIAction(title: "камера", image: nil) { _ in
+                self.choosePhotoSourse(sourse: .camera)
+            }
+            let innerMenuAction1 = UIAction(title: "галлерея", image: nil) { _ in
+                self.picker()
+            }
+            let innerMenuAction2 = UIAction(title: "Save To libruary", image: nil) { _ in
+                self.saveImageToGallery(imageView: self.userImage)
+            }
+            let innerMenuAction3 = UIAction(title: "Shared photo", image: nil) { _ in
+                guard let image = self.userImage.image else {
+                    return
+                }
+                let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+            
+            let innerMenu = UIMenu(title: "Редактирование фото", children: [innerMenuAction,
+                                                                            innerMenuAction1,
+                                                                            innerMenuAction2,
+                                                                            innerMenuAction3])
+            
+            return UIMenu(title: "Main Menu", children: [outerMenu, outerMenuAction1, innerMenu])
+        }
+    }
+    
+}
+
+//MARK: - LibruarySourse
+extension MainViewController: PHPickerViewControllerDelegate {
+    //Privacy - Photo Library Usage Description
+
+    func picker() {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1
+        config.filter = .images
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+        
+        for item in results {
+            item.itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+                if let image = image as? UIImage {
+                    
+                    DispatchQueue.main.async {
+                        self.presenter.saveUserInfo(name: self.userName.text,
+                                                    image: image)
+                    }
+                }
+            }
+        }
+    }
+}
+
+//MARK: - CameraSourse
+extension MainViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    //Privacy - Camera Usage Description
+
+    func choosePhotoSourse (sourse : UIImagePickerController.SourceType) {
+
+        if UIImagePickerController.isSourceTypeAvailable(sourse) {
+            
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = sourse
+            present(imagePicker, animated: true)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        DispatchQueue.main.async {
+            self.presenter.saveUserInfo(name: self.userName.text,
+                                        image: info[.editedImage] as? UIImage)
+        }
+        dismiss(animated: true)
     }
 }
 
 
+//MARK: - SaveImageToGallery
+extension MainViewController {
+    
+    func saveImageToGallery(imageView: UIImageView) {
+        guard let image = imageView.image else { return }
+        
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print("Ошибка сохранения изображения: \(error.localizedDescription)")
+        } else {
+            print("Изображение успешно сохранено в галерее")
+        }
+    }
+}
 
-
-
-//// Создание UI элемента
-//let myView = UIView()
-//myView.translatesAutoresizingMaskIntoConstraints = false
-//myView.backgroundColor = .red
-//view.addSubview(myView)
-//// Создание NSLayoutConstraint для установки высоты UI элемента
-//let heightConstraint = NSLayoutConstraint(item: myView, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 0.2, constant: 0.0)
-//view.addConstraint(heightConstraint)
-//// Создание NSLayoutConstraint для размещения UI элемента по центру экрана
-//let centerXConstraint = NSLayoutConstraint(item: myView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-//view.addConstraint(centerXConstraint)
-//// Создание NSLayoutConstraint для размещения UI элемента на расстоянии 0.2 в соотношении с высотой экрана
-//let topConstraint = NSLayoutConstraint(item: myView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: view.bounds.height * 0.2)
-//view.addConstraint(topConstraint)
-
-
-
-//print(view.frame.size.height)  // 852
-//print(view.bounds.size.height)
-//print(view.safeAreaLayoutGuide.layoutFrame.height)

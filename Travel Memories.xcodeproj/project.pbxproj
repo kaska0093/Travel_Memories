@@ -241,10 +241,10 @@
 		11BDEDAB2B76F1DE005EEFB5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				11BDEDB62B7722F0005EEFB5 /* ModelManager.swift */,
 				11BDEDAC2B76F1F4005EEFB5 /* Router.swift */,
 				11BDEDAE2B76F1FD005EEFB5 /* Assembler.swift */,
 				1159D68D2B785AC500CE92E4 /* ElementsBuilder.swift */,
-				11BDEDB62B7722F0005EEFB5 /* ModelManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

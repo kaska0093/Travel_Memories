@@ -89,7 +89,7 @@ extension DetailViewController {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing:CustomCell_CV.self),
                                                       for: indexPath) as! CustomCell_CV
-        //
+        
         cell.configure(image: UIImage(named: "defaultUser"))
         return cell
     }

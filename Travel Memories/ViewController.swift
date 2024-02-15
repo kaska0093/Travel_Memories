@@ -65,7 +65,7 @@ extension ViewController: PHPickerViewControllerDelegate {
 
     func picker() {
         var config = PHPickerConfiguration()
-        config.selectionLimit = 3
+        config.selectionLimit = 1
         config.filter = .images
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self

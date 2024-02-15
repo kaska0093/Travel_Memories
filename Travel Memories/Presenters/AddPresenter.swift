@@ -21,7 +21,7 @@ class AddPresenter: AddPresenterOutputProtocol {
     
     func saveNewCity(imageOfCity: UIImage?, nameOfCity: String) {
         modelManager.saveNewCity(city: CityModel(imageOfCity: imageOfCity, nameOfCity: nameOfCity))
-        modelManager.getAll { _ in  }
+        modelManager.getModeCities { _ in  }
         router?.popToRoot()
     }
     

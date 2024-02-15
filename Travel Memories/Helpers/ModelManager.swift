@@ -10,19 +10,26 @@ import RealmSwift
 
 protocol ModelManagerProtocol {
     
-    func getAll(complition: @escaping (Result<[CityModel], Error>) -> Void)
-    func saveNewCity(city: CityModel)
+    func getModeCities(complition: @escaping (Result<[CityModel], Error>) -> Void)
     func deleteAll()
+
+    //MARK: - citis
+    func saveNewCity(city: CityModel)
     func objectToDelete(id: String, complition: @escaping (Result<CityModel?, Error>) -> Void)
     func deleteObjectFromRealm(object: Object)
+    //MARK: - user
+    func saveUserInfo(name: String?, image: UIImage?)
+    func changeUserInfo(name: String?, image: UIImage?)
+    func getUserInfo(complition: @escaping (Result<UserAccountInfo, Error>) -> Void)
+
 }
 
 //MARK: - ModelManagerProtocol
 class ModelManager: ModelManagerProtocol {
-    
+
     fileprivate lazy var mainRealm = try! Realm(configuration: migration())
 
-    func getAll(complition: @escaping (Result<[CityModel], Error>) -> Void) {
+    func getModeCities(complition: @escaping (Result<[CityModel], Error>) -> Void) {
         
         let model = Array(mainRealm.objects(CityModel.self))
         if !model.isEmpty {
@@ -50,15 +57,66 @@ class ModelManager: ModelManagerProtocol {
             realm.delete(object)
         }
     }
-
     
     func saveNewCity(city: CityModel) {
-        
         try! mainRealm.write {
             mainRealm.add(city)
         }
     }
+    //MARK: - user
     
+    func saveUserInfo(name: String?, image: UIImage?)  {
+
+        DispatchQueue.main.async {
+            try! self.mainRealm.write {
+
+                let newUser = UserAccountInfo()
+                newUser.image = image
+                newUser.name = name
+                self.mainRealm.add(newUser)
+            }
+        }
+    }
+    
+    
+    func changeUserInfo(name: String?, image: UIImage?) {
+        print(image)
+        print(name)
+        DispatchQueue.main.async { [self] in
+            
+            try! mainRealm.write {
+                let person = mainRealm.objects(UserAccountInfo.self).first
+                person?.image = image //FIXME:  заходит в блок set
+                person?.name = name
+            }
+        }
+    }
+
+    func getUserInfo(complition: @escaping (Result<UserAccountInfo, Error>) -> Void) {
+        
+        DispatchQueue.main.async {
+            if let user = self.mainRealm.objects(UserAccountInfo.self).first {
+                print(user)
+                if let image = user.image {
+                    print(image)
+                }
+                complition(.success(user))
+            }
+        }
+
+
+//        DispatchQueue.main.async { [self] in
+//            
+//            if let model = mainRealm.objects(UserAccountInfo.self).first {
+//          //FIXME: не заходит в блок get
+//                complition(.success(model))
+//            } else {
+//                complition(.failure(ModelManagerError.isEmpty))
+//            }
+//        }
+    }
+    
+    //MARK: - system
     func deleteAll() {
         try! mainRealm.write {
             mainRealm.deleteAll()
@@ -71,7 +129,7 @@ extension ModelManager {
     
     func migration() -> Realm.Configuration {
         
-        let config = Realm.Configuration(schemaVersion: 6) { migration, oldSchemaVersion in
+        let config = Realm.Configuration(schemaVersion: 8) { migration, oldSchemaVersion in
             if (oldSchemaVersion < 1) {
             }
         }

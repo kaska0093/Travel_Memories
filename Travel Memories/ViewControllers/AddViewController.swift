@@ -30,6 +30,7 @@ class AddViewController: UIViewController {
     
     //MARK: - Actions
     @objc private func saveNewCity() {
+        
         if let text = registerTF.text {
             presenter.saveNewCity(imageOfCity: imageView.image, nameOfCity: text)
         } else {
@@ -57,9 +58,6 @@ private extension AddViewController {
         setupElements()
         setupLayout()
     }
-    
-    
-
 }
 
 //MARK: -  methods of UI elements settings
