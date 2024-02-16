@@ -88,7 +88,6 @@ private extension MainViewController {
                                 1])
         navigationItemSetup()
         addSubViews()
-        addActions()
         setupElements()
         setupLayout()
     }
@@ -115,9 +114,6 @@ private extension MainViewController {
         view.addSubview(tableView)
     }
     
-    func addActions() {
-        //eyeButton.addTarget(self, action: #selector(displayBookMarks), for: .touchUpInside)
-    }
     
     func setupElements() {
         tableView.delegate = self
@@ -128,8 +124,6 @@ private extension MainViewController {
 
 //MARK: - Layout
 private extension MainViewController {
-    // размещение элементов интерфейса
-    
     
     private enum UIConstats {
         static let imageViewTopSpacing = 0.25
@@ -173,7 +167,7 @@ extension MainViewController: MainViewOutputProtocol {
     }
     
     func failure() {
-        
+        //
     }
     
     
@@ -299,11 +293,11 @@ extension MainViewController {
 extension MainViewController: UIContextMenuInteractionDelegate {
     
     func register3DforImageView() {
-        // Добавляем интеракцию для обработки 3D Touch
+        // для обработки 3d
         let interaction = UIContextMenuInteraction(delegate: self)
         userImage.addInteraction(interaction)
         
-        // Добавляем жест нажатия для нормальных нажатий
+        // для нормальных нажатий
         userImage.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
         userImage.addGestureRecognizer(tapGesture)
@@ -323,12 +317,12 @@ extension MainViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
                                 configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         
-        let outerMenuAction1 = UIAction(title: "Test button", image: nil) { _ in }
-        let outerMenuAction = UIAction(title: "Name change", image: nil) { _ in
+        let outMenuAction1 = UIAction(title: "Test button", image: nil) { _ in }
+        let outMenuAction = UIAction(title: "Name change", image: nil) { _ in
             
 
             
-            let alertController = UIAlertController(title: "new name", message: "enter new name", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "New name", message: "Enter new name", preferredStyle: .alert)
             
             let saveTask = UIAlertAction(title: "Save", style: .default) { [self] action in
                 let textField = (alertController.textFields?.first)!
@@ -345,20 +339,20 @@ extension MainViewController: UIContextMenuInteractionDelegate {
             self.present(alertController, animated: true, completion: nil)
         }
         
-        let outerMenu = UIMenu(title: "Редактировавние профиля", children: [outerMenuAction])
+        let outMenu = UIMenu(title: "Редактировавние профиля", children: [outMenuAction])
         
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
                
-            let innerMenuAction = UIAction(title: "камера", image: nil) { _ in
+            let innMenuAction = UIAction(title: "Camera", image: nil) { _ in
                 self.choosePhotoSourse(sourse: .camera)
             }
-            let innerMenuAction1 = UIAction(title: "галлерея", image: nil) { _ in
+            let innMenuAction1 = UIAction(title: "Gallery", image: nil) { _ in
                 self.picker()
             }
-            let innerMenuAction2 = UIAction(title: "Save To libruary", image: nil) { _ in
+            let innMenuAction2 = UIAction(title: "Save To libruary", image: nil) { _ in
                 self.saveImageToGallery(imageView: self.userImage)
             }
-            let innerMenuAction3 = UIAction(title: "Shared photo", image: nil) { _ in
+            let innMenuAction3 = UIAction(title: "Shared photo", image: nil) { _ in
                 guard let image = self.userImage.image else {
                     return
                 }
@@ -366,15 +360,14 @@ extension MainViewController: UIContextMenuInteractionDelegate {
                 self.present(activityViewController, animated: true, completion: nil)
             }
             
-            let innerMenu = UIMenu(title: "Редактирование фото", children: [innerMenuAction,
-                                                                            innerMenuAction1,
-                                                                            innerMenuAction2,
-                                                                            innerMenuAction3])
+            let inMenu = UIMenu(title: "Photo Edit", children: [innMenuAction,
+                                                                        innMenuAction1,
+                                                                        innMenuAction2,
+                                                                        innMenuAction3])
             
-            return UIMenu(title: "Main Menu", children: [outerMenu, outerMenuAction1, innerMenu])
+            return UIMenu(title: "Main Menu", children: [outMenu, outMenuAction1, inMenu])
         }
     }
-    
 }
 
 //MARK: - LibruarySourse

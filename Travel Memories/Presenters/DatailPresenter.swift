@@ -36,7 +36,5 @@ class DatailPresenter: DetailPresenterOutputProtocol {
         self.modelManager = modelManager
     }
     
-    var citys: [CityModel]?
-    
-    
+    var citys: [CityModel]?   
 }

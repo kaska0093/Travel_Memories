@@ -8,15 +8,13 @@
 import Foundation
 import RealmSwift
 
-
-
-
 class CityModel: Object {
     
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var nameOfCity: String!
     @objc dynamic var imageOfCity: NSData?
-    // RealmSwift не поддерживает напрямую хранение UIImage в базе данных.
+    // потому что RealmSwift не поддерживает напрямую
+    // хранение UIImage в базе данных.
     var image: UIImage? {
         get {
             guard let data = imageOfCity else { return nil }

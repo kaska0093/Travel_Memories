@@ -39,8 +39,6 @@ protocol MainPresenterOutputProtocol: AnyObject {
 //MARK: - MainPresenterOutputProtocol
 class MainPresenter: MainPresenterOutputProtocol {
 
-    
-    
     var citys: [CityModel]?
     var userAccountInfo: UserAccountInfo?
 
@@ -132,8 +130,6 @@ class MainPresenter: MainPresenterOutputProtocol {
         })
     }
 
-    
-    
                   
     //MARK: - router methods
     func addButtonPressed(isEditingMode: Bool, id: String?) {

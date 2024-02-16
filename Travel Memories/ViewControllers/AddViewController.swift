@@ -74,15 +74,13 @@ private extension AddViewController {
         
         addSubViews()
         navigationItemSetup()
-        addActions()
-        setupElements()
         setupLayout()
     }
 }
 
 //MARK: -  methods of UI elements settings
 private extension AddViewController {
-    // методы по настройке элементов интерфейса
+
     func addSubViews() {
         
         view.addSubview(label1)
@@ -94,7 +92,7 @@ private extension AddViewController {
     func navigationItemSetup() {
         
         if isEditingMode == true {
-            let editAtion = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editNewCity))
+            let editAtion = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(editNewCity))
             self.navigationItem.rightBarButtonItems = [editAtion]
         } else {
             let saveAtion = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNewCity))
@@ -103,20 +101,10 @@ private extension AddViewController {
         
 
     }
-    
-    func addActions() {
-        //eyeButton.addTarget(self, action: #selector(displayBookMarks), for: .touchUpInside)
-    }
-    
-    func setupElements() {
-       // <#statements#>.delegate = self
-    }
 }
 
 //MARK: - Layout
 private extension AddViewController {
-    // размещение элементов интерфейса
-    
     
     func setupLayout() {
         label1.snp.makeConstraints { make in
@@ -157,6 +145,4 @@ extension AddViewController: AddViewOuputProtocol {
     func failure() {
         //
     }
-    
-    
 }

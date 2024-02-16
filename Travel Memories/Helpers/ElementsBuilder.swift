@@ -28,12 +28,7 @@ class ElementsBuilder {
         return label
     }
     
-    static func createImageView(withImageName image: UIImage) -> UIImageView {
-        let imageView = UIImageView()
-        imageView.image = image
-        return imageView
-    }
-    
+
     static func createMainTableView() -> UITableView {
         
         let tableView = UITableView()
@@ -41,16 +36,16 @@ class ElementsBuilder {
         tableView.layer.cornerRadius = 20
         tableView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.3)
         
-        let blurEffect = UIBlurEffect(style: .dark) // Стиль размытия (можно выбрать другой стиль)
+        let blurEffect = UIBlurEffect(style: .dark) 
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = tableView.bounds
         tableView.backgroundView = blurView
-        // Установка красной рамки по границе TableView
+        //  рамки по границе
         tableView.layer.borderWidth = 1
         tableView.layer.borderColor = UIColor.red.cgColor
-        // Установка отступа между ячейками
+        // отступа между ячейками
         tableView.separatorInset = UIEdgeInsets(top: 5, left: 10, bottom:5, right: 10)
-        // Установка красивого разделителя между ячейками
+        //  разделитель между ячейками
         tableView.separatorStyle = .singleLine
         tableView.separatorColor = UIColor.red
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)

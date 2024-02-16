@@ -11,8 +11,6 @@ import RealmSwift
 
 class UserAccountInfo: Object {
     
-    
-
     @objc dynamic var name: String?
     @objc dynamic var userImage: Data? = nil
     
