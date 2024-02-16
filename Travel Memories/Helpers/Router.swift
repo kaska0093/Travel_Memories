@@ -19,13 +19,12 @@ protocol RouterProtocol: RouterMainProperties {
 
 
     func initialViewController()
-    func showAddViewController()
+    func showAddViewController(isEditingMode: Bool, id: String?)
     func showDetailViewController()
     func popToRoot()
 }
 
 class Router: RouterProtocol {
-
     
     var navigationController: UINavigationController?
     var assemblyBuilder: AssemblerProtocol?
@@ -46,10 +45,10 @@ class Router: RouterProtocol {
         }
     }
     
-    func showAddViewController() {
+    func showAddViewController(isEditingMode: Bool, id: String?) {
         
         if let navigationController = navigationController {
-            guard let addVC = assemblyBuilder?.createAddModule(router: self) else { return }
+            guard let addVC = assemblyBuilder?.createAddModule(router: self, isEditingMode: isEditingMode, id: id) else { return }
             navigationController.pushViewController(addVC, animated: true)
         }
     }

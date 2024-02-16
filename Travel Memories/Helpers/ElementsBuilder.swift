@@ -28,9 +28,9 @@ class ElementsBuilder {
         return label
     }
     
-    static func createImageView(withImageName imageName: String) -> UIImageView {
+    static func createImageView(withImageName image: UIImage) -> UIImageView {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: imageName)
+        imageView.image = image
         return imageView
     }
     

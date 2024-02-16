@@ -22,7 +22,7 @@ protocol MainPresenterOutputProtocol: AnyObject {
     var citys: [CityModel]? { get set }
     var userAccountInfo: UserAccountInfo? { get set }
     
-    func addButtonPressed()
+    func addButtonPressed(isEditingMode: Bool, id: String?)
     func showDetailPressed()
     func getAllCitis()
     func cleanAll()
@@ -77,10 +77,11 @@ class MainPresenter: MainPresenterOutputProtocol {
     }
     
     func deleteCertainObject(id: String) {
-        modelManager?.objectToDelete(id: id) {[weak self] result in
+        modelManager?.specificObject(id: id) {[weak self] result in
             switch result {
             case .success(let object):
                 self?.modelManager?.deleteObjectFromRealm(object: object!)
+                self?.getAllCitis()
                 self?.view?.success_Reload_TableView()
             case .failure(_):
                 print("Объект не найден")
@@ -135,9 +136,9 @@ class MainPresenter: MainPresenterOutputProtocol {
     
                   
     //MARK: - router methods
-    func addButtonPressed() {
-        router?.showAddViewController()
-    }  
+    func addButtonPressed(isEditingMode: Bool, id: String?) {
+        router?.showAddViewController(isEditingMode: isEditingMode, id: id)
+    }
     func showDetailPressed() {
         router?.showDetailViewController()
     }

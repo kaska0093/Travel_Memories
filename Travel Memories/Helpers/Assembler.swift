@@ -10,7 +10,8 @@ import UIKit
 protocol AssemblerProtocol {
     
     func createMainModule(router: RouterProtocol) -> UIViewController
-    func createAddModule(router: RouterProtocol) -> UIViewController  //(comment: Comment?,  router: RouterProtocol)
+    func createAddModule(router: RouterProtocol, isEditingMode: Bool, id: String?) -> UIViewController
+
     func createDetailModule(router: RouterProtocol) -> UIViewController
 }
 
@@ -24,11 +25,16 @@ class Assembler: AssemblerProtocol {
         return view
     }
     
-    func createAddModule(router: RouterProtocol) -> UIViewController {
+    func createAddModule(router: RouterProtocol, isEditingMode: Bool, id: String?) -> UIViewController {
         let view = AddViewController()
         let modelManager = ModelManager()
-        let presenter = AddPresenter(view: view, modelManager: modelManager, router: router)
-        view.presenter = presenter
+        if isEditingMode == false {
+            let presenter = AddPresenter(view: view, modelManager: modelManager, router: router, isEditingMode: isEditingMode)
+            view.presenter = presenter
+        } else {
+            let presenter = AddPresenter(view: view, modelManager: modelManager, router: router, isEditingMode: isEditingMode, id: id!)
+            view.presenter = presenter
+        }
         return view
     }
     

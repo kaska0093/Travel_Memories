@@ -71,7 +71,7 @@ final class MainViewController: UIViewController {
     
     //MARK: - Actions
     @objc private func addNewCity() {
-        presenter.addButtonPressed()
+        presenter.addButtonPressed(isEditingMode: false, id: nil)
     }
 }
 
@@ -185,6 +185,7 @@ extension MainViewController:  UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.citys?.count ?? 0
     }
@@ -225,24 +226,31 @@ extension MainViewController:  UITableViewDataSource, UITableViewDelegate {
             }
         completionHandler(true)
         }
-        
+        deleteAction.image = UIImage(systemName: "trash")
+
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-        configuration.performsFirstActionWithFullSwipe = false // чтобы вызывать свайп только из левой части ячейки
+        configuration.performsFirstActionWithFullSwipe = false
         
         return configuration
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal, title: "Редактировать") { (action, view, completionHandler) in
-            // Добавьте ваш код для редактирования ячейки здесь
-            action.backgroundColor = .green // Устанавливаем желаемый цвет фона
+            let id = self.presenter.citys![indexPath.row].id
+            self.presenter.addButtonPressed(isEditingMode: true, id: id)
             completionHandler(true)
         }
+        editAction.backgroundColor = .green
+        editAction.image = UIImage(systemName: "pencil")
+        editAction.title = "Edit"
+
         let pinAction = UIContextualAction(style: .normal, title: "Закрепить") { (action, view, completionHandler) in
             // Добавьте ваш код для редактирования ячейки здесь
-            action.backgroundColor = .yellow // Устанавливаем желаемый цвет фона
             completionHandler(true)
         }
+        pinAction.backgroundColor = .lightGray
+        pinAction.image = UIImage(systemName: "pin.fill")
+
         
         let configuration = UISwipeActionsConfiguration(actions: [editAction, pinAction])
         configuration.performsFirstActionWithFullSwipe = false // чтобы вызывать свайп только из левой части ячейки
@@ -311,7 +319,7 @@ extension MainViewController: UIContextMenuInteractionDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
-    
+    //MARK: - ContextMenuInteraction
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
                                 configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         
@@ -323,7 +331,7 @@ extension MainViewController: UIContextMenuInteractionDelegate {
             let alertController = UIAlertController(title: "new name", message: "enter new name", preferredStyle: .alert)
             
             let saveTask = UIAlertAction(title: "Save", style: .default) { [self] action in
-                var textField = (alertController.textFields?.first)!
+                let textField = (alertController.textFields?.first)!
                 textField.placeholder = "New profile name"
                 
                 if let name = textField.text {

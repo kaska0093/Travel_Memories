@@ -10,12 +10,19 @@ import UIKit
 class AddViewController: UIViewController {
     
     var presenter: AddPresenterOutputProtocol!
+    var isEditingMode: Bool?
 
 //MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
-        title = "New city"
+        presenter.getMark()
+        if isEditingMode == true {
+            title = "Edit city"
+            registerTF.text = presenter.citys?.nameOfCity
+        } else {
+            title = "New city"
+        }
         navigationController?.navigationBar.prefersLargeTitles = true
         setupView()
     }
@@ -37,12 +44,25 @@ class AddViewController: UIViewController {
             print("TextField is empty")
         }
     }
+    @objc private func editNewCity() {
+        
+        if let text = registerTF.text {
+            presenter.changeCertainObject(imageOfCity: imageView.image, nameOfCity: text)
+        } else {
+            print("TextField is empty")
+        }
+    }
+    
     
     //MARK: - Lazy properties
 
     lazy var label1 = ElementsBuilder.createLabel(withText: "Город Посещений")
     lazy var label2 = ElementsBuilder.createLabel(withText: "картинка города")
-    lazy var imageView = ElementsBuilder.createImageView(withImageName: "defaultUser")
+    lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = presenter.citys?.image
+        return imageView
+    }()
     
 }
 
@@ -73,8 +93,15 @@ private extension AddViewController {
     
     func navigationItemSetup() {
         
-        let saveAtion = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNewCity))
-        self.navigationItem.rightBarButtonItems = [saveAtion]
+        if isEditingMode == true {
+            let editAtion = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editNewCity))
+            self.navigationItem.rightBarButtonItems = [editAtion]
+        } else {
+            let saveAtion = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNewCity))
+            self.navigationItem.rightBarButtonItems = [saveAtion]
+        }
+        
+
     }
     
     func addActions() {
@@ -118,6 +145,11 @@ private extension AddViewController {
 }
 
 extension AddViewController: AddViewOuputProtocol {
+    
+    func setMark(isEditingMode: Bool?) {
+        self.isEditingMode = isEditingMode
+    }
+    
     func success() {
         //
     }

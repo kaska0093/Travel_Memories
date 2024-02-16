@@ -15,7 +15,14 @@ protocol ModelManagerProtocol {
 
     //MARK: - citis
     func saveNewCity(city: CityModel)
-    func objectToDelete(id: String, complition: @escaping (Result<CityModel?, Error>) -> Void)
+    
+    /// Функция для поиска конкретного объекта типа CityModel
+    /// - Parameters:
+    ///   - id: id объекта для поиска
+    ///   - complition: найденный объект/ ошибка о его отсутвии в БД
+    func specificObject(id: String, complition: @escaping (Result<CityModel?, Error>) -> Void)
+    func changeModelCities(object: CityModel, newName: String?, image: UIImage?)
+
     func deleteObjectFromRealm(object: Object)
     //MARK: - user
     func saveUserInfo(name: String?, image: UIImage?)
@@ -39,13 +46,19 @@ class ModelManager: ModelManagerProtocol {
         }
     }
     
+    func changeModelCities(object: CityModel, newName: String?, image: UIImage?) {
 
+            try! mainRealm.write {
+                object.nameOfCity = newName
+                object.image = image
+            }
+    }
     
-    func objectToDelete(id: String, complition: @escaping (Result<CityModel?, Error>) -> Void) {
+    func specificObject(id: String, complition: @escaping (Result<CityModel?, Error>) -> Void) {
         
         let test = NSPredicate(format: "id CONTAINS %@", id)
-        if let model = mainRealm.objects(CityModel.self).filter(test).first {
-            complition(.success(model))
+        if let object = mainRealm.objects(CityModel.self).filter(test).first {
+            complition(.success(object))
         } else {
             complition(.failure(ModelManagerError.dontExist))
         }
@@ -63,8 +76,8 @@ class ModelManager: ModelManagerProtocol {
             mainRealm.add(city)
         }
     }
-    //MARK: - user
     
+    //MARK: - Action with UserInfo
     func saveUserInfo(name: String?, image: UIImage?)  {
 
         DispatchQueue.main.async {
@@ -80,13 +93,12 @@ class ModelManager: ModelManagerProtocol {
     
     
     func changeUserInfo(name: String?, image: UIImage?) {
-        print(image)
-        print(name)
+
         DispatchQueue.main.async { [self] in
-            
             try! mainRealm.write {
+  
                 let person = mainRealm.objects(UserAccountInfo.self).first
-                person?.image = image //FIXME:  заходит в блок set
+                person?.image = image
                 person?.name = name
             }
         }
@@ -96,24 +108,11 @@ class ModelManager: ModelManagerProtocol {
         
         DispatchQueue.main.async {
             if let user = self.mainRealm.objects(UserAccountInfo.self).first {
-                print(user)
-                if let image = user.image {
-                    print(image)
-                }
                 complition(.success(user))
+            } else {
+                complition(.failure(ModelManagerError.isEmpty))
             }
         }
-
-
-//        DispatchQueue.main.async { [self] in
-//            
-//            if let model = mainRealm.objects(UserAccountInfo.self).first {
-//          //FIXME: не заходит в блок get
-//                complition(.success(model))
-//            } else {
-//                complition(.failure(ModelManagerError.isEmpty))
-//            }
-//        }
     }
     
     //MARK: - system
@@ -129,7 +128,7 @@ extension ModelManager {
     
     func migration() -> Realm.Configuration {
         
-        let config = Realm.Configuration(schemaVersion: 8) { migration, oldSchemaVersion in
+        let config = Realm.Configuration(schemaVersion: 9) { migration, oldSchemaVersion in
             if (oldSchemaVersion < 1) {
             }
         }

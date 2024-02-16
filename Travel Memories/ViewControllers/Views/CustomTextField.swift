@@ -25,27 +25,23 @@ final class CustomTextField: UITextField {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     //MARK: - Override Methods
-    //за размещение теста введенного пользователем
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         bounds.inset(by: padding)
     }
-    //TODO: print something
-    //FIXME: error compi
-    //за размещение placeHolder
+
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         bounds.inset(by: padding)
     }
     
-    //за размещение отредактированного текста
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         bounds.inset(by: padding)
     }
     
     //MARK: - Private Methods
     
-    /// function to setap TF
-    /// - Parameter placeholder: приходит из инициализатора
+
     private func setupTextField(placeholder: String) {
         textColor = .white
         layer.cornerRadius = 10
