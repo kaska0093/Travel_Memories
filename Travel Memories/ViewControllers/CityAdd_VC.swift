@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddViewController: UIViewController {
+class CityAdd_VC: UIViewController {
     
     var presenter: AddPresenterOutputProtocol!
     var isEditingMode: Bool?
@@ -68,7 +68,7 @@ class AddViewController: UIViewController {
 
 
 //MARK: - superView settings
-private extension AddViewController {
+private extension CityAdd_VC {
     
     func setupView() {
         
@@ -79,7 +79,7 @@ private extension AddViewController {
 }
 
 //MARK: -  methods of UI elements settings
-private extension AddViewController {
+private extension CityAdd_VC {
 
     func addSubViews() {
         
@@ -104,7 +104,7 @@ private extension AddViewController {
 }
 
 //MARK: - Layout
-private extension AddViewController {
+private extension CityAdd_VC {
     
     func setupLayout() {
         label1.snp.makeConstraints { make in
@@ -132,7 +132,7 @@ private extension AddViewController {
     }
 }
 
-extension AddViewController: AddViewOuputProtocol {
+extension CityAdd_VC: AddViewOuputProtocol {
     
     func setMark(isEditingMode: Bool?) {
         self.isEditingMode = isEditingMode

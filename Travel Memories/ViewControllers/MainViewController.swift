@@ -210,6 +210,9 @@ extension MainViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.presenter.showDetailPressed(index: indexPath.row)
+    }
     
     //MARK: - SwipeActionsConfiguration
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -239,7 +242,7 @@ extension MainViewController:  UITableViewDataSource, UITableViewDelegate {
         editAction.title = "Edit"
 
         let pinAction = UIContextualAction(style: .normal, title: "Закрепить") { (action, view, completionHandler) in
-            // Добавьте ваш код для редактирования ячейки здесь
+            self.showDatePickerAlert(currentIndex: indexPath.row)
             completionHandler(true)
         }
         pinAction.backgroundColor = .lightGray
@@ -277,12 +280,14 @@ extension MainViewController {
                 self.tableView.reloadData()
             },
             
-            UIAction(title: "detail VC", image: UIImage(systemName: "trash")) {_ in
-                self.presenter.showDetailPressed()
+            UIAction(title: "___________", image: UIImage(systemName: "trash")) {_ in
             },
             
             UIAction(title: "get users ", image: UIImage(systemName: "trash")) {_ in
                 self.presenter.getUserInfo()
+            },
+            UIAction(title: "add trip ", image: UIImage(systemName: "trash")) {_ in
+                //self.presenter.addTrip()
             }
         ])
         return addMenuItems
@@ -442,5 +447,42 @@ extension MainViewController {
             print("Изображение успешно сохранено в галерее")
         }
     }
+}
+
+extension MainViewController {
+    
+    func showDatePickerAlert(currentIndex: Int) {
+        
+        let alertController = UIAlertController(title: "Выберите даты", message: nil, preferredStyle: .alert)
+
+        let datePicker1 = UIDatePicker()
+        datePicker1.datePickerMode = .date
+        alertController.view.addSubview(datePicker1)
+
+        let datePicker2 = UIDatePicker()
+        datePicker2.datePickerMode = .date
+        alertController.view.addSubview(datePicker2)
+
+        datePicker1.snp.makeConstraints { make in
+            make.top.equalTo(alertController.view.safeAreaLayoutGuide.snp.top)
+            make.left.equalTo(alertController.view)
+        }
+
+        datePicker2.snp.makeConstraints { make in
+            make.top.equalTo(alertController.view.safeAreaLayoutGuide.snp.top)
+            make.right.equalTo(alertController.view)
+        }
+
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            let selectedDate1 = datePicker1.date
+            let selectedDate2 = datePicker2.date
+            self.presenter.addTrip(index: currentIndex, startDate: selectedDate1, endDate: selectedDate2)
+        }))
+
+        alertController.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+
+        present(alertController, animated: true, completion: nil)
+    }
+
 }
 

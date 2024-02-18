@@ -25,7 +25,7 @@ class CityModel: Object {
         }
     }
 
-    let posts = List<TripMode>()
+    let posts = List<TripModel>()
     
     override static func primaryKey() -> String? {
         return "id"
@@ -38,19 +38,31 @@ class CityModel: Object {
     }
 }
 
-class TripMode: Object {
+class TripModel: Object {
     
     @objc dynamic var id = UUID().uuidString
-    @objc dynamic var FirstDate: Date?
-    @objc dynamic var LastDate: Date?
+    @objc dynamic var firstDate: Date?
+    @objc dynamic var lastDate: Date?
     @objc dynamic var tripDescription: String?
-    dynamic var raiting: Int?
+    @objc dynamic var typeOfTrip: String? = TypeOfTrip.Free.rawValue
+    @objc dynamic var raiting: Int = 0
+    let currentPlaces = List<String>()
     
     override static func primaryKey() -> String? {
         return "id"
     }
+    convenience init(firstDate: Date, lastDate: Date) { //tripDescription: String?,     rating: Int, typeOfTrip: TypeOfTrip?)
+
+        self.init()
+        self.firstDate = firstDate
+        self.lastDate = lastDate
+        //self.tripDescription = tripDescription
+        //self.raiting = rating
+        //self.typeOfTrip = typeOfTrip?.rawValue
+    }
 }
-enum TypeOfTrip {
+enum TypeOfTrip: String {
+    case Dont_choose
     case Free
     case Otpusk
     case Komandirovka

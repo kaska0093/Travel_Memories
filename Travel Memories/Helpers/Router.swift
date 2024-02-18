@@ -20,7 +20,7 @@ protocol RouterProtocol: RouterMainProperties {
 
     func initialViewController()
     func showAddViewController(isEditingMode: Bool, id: String?)
-    func showDetailViewController()
+    func showDetailViewController(city: CityModel)
     func popToRoot()
 }
 
@@ -53,9 +53,9 @@ class Router: RouterProtocol {
         }
     }
     
-    func showDetailViewController() {
+    func showDetailViewController(city: CityModel) {
         if let navigationController = navigationController {
-            guard let detailVC = assemblyBuilder?.createDetailModule(router: self) else { return }
+            guard let detailVC = assemblyBuilder?.createDetailModule(router: self, city: city) else { return }
             navigationController.pushViewController(detailVC, animated: true)
         }
     }

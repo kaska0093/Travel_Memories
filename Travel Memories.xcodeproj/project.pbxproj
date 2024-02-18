@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B415681906EF62BBD6E2D75 /* Pods_Travel_Memories_Travel_MemoriesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906D370EACA10793FC906C /* Pods_Travel_Memories_Travel_MemoriesUITests.framework */; };
 		113B89242B7F0D4A00B875DB /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B89232B7F0D4A00B875DB /* UserModel.swift */; };
-		1159D6872B783F2C00CE92E4 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D6862B783F2C00CE92E4 /* AddViewController.swift */; };
+		1159D6872B783F2C00CE92E4 /* CityAdd_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D6862B783F2C00CE92E4 /* CityAdd_VC.swift */; };
 		1159D6892B78414C00CE92E4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D6882B78414C00CE92E4 /* CustomTextField.swift */; };
 		1159D68C2B78498C00CE92E4 /* AddPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D68B2B78498C00CE92E4 /* AddPresenter.swift */; };
 		1159D68E2B785AC500CE92E4 /* ElementsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D68D2B785AC500CE92E4 /* ElementsBuilder.swift */; };
@@ -29,6 +29,7 @@
 		11BDEDB32B770271005EEFB5 /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDEDB22B770271005EEFB5 /* TripModel.swift */; };
 		11BDEDB52B770F6D005EEFB5 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDEDB42B770F6D005EEFB5 /* MainPresenter.swift */; };
 		11BDEDB72B7722F0005EEFB5 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDEDB62B7722F0005EEFB5 /* ModelManager.swift */; };
+		11E815E42B815B6200BA7815 /* RatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E815E32B815B6200BA7815 /* RatingStackView.swift */; };
 		E56A24777B163CC2D137B410 /* Pods_Travel_MemoriesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75F3D596C71C26BACDB40FB /* Pods_Travel_MemoriesTests.framework */; };
 		F10F745A6537429585F04C38 /* Pods_Travel_Memories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9543D0614B6D3CB5813D8D8D /* Pods_Travel_Memories.framework */; };
 /* End PBXBuildFile section */
@@ -52,7 +53,7 @@
 
 /* Begin PBXFileReference section */
 		113B89232B7F0D4A00B875DB /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		1159D6862B783F2C00CE92E4 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		1159D6862B783F2C00CE92E4 /* CityAdd_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAdd_VC.swift; sourceTree = "<group>"; };
 		1159D6882B78414C00CE92E4 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		1159D68B2B78498C00CE92E4 /* AddPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPresenter.swift; sourceTree = "<group>"; };
 		1159D68D2B785AC500CE92E4 /* ElementsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementsBuilder.swift; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		11BDEDB22B770271005EEFB5 /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		11BDEDB42B770F6D005EEFB5 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		11BDEDB62B7722F0005EEFB5 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
+		11E815E32B815B6200BA7815 /* RatingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStackView.swift; sourceTree = "<group>"; };
 		27ABDA1508F68807BEB6DCFA /* Pods-Travel MemoriesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travel MemoriesTests.release.xcconfig"; path = "Target Support Files/Pods-Travel MemoriesTests/Pods-Travel MemoriesTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C906D370EACA10793FC906C /* Pods_Travel_Memories_Travel_MemoriesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Travel_Memories_Travel_MemoriesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C7FF2B698F512EFCF61AF9 /* Pods-Travel Memories-Travel MemoriesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travel Memories-Travel MemoriesUITests.debug.xcconfig"; path = "Target Support Files/Pods-Travel Memories-Travel MemoriesUITests/Pods-Travel Memories-Travel MemoriesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				1159D6882B78414C00CE92E4 /* CustomTextField.swift */,
 				115E05F92B7AC1D400118D73 /* CustomCell_CV.swift */,
+				11E815E32B815B6200BA7815 /* RatingStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,7 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				11BDEDB02B76F359005EEFB5 /* MainViewController.swift */,
-				1159D6862B783F2C00CE92E4 /* AddViewController.swift */,
+				1159D6862B783F2C00CE92E4 /* CityAdd_VC.swift */,
 				115E05F72B7AAFB600118D73 /* DetailViewController.swift */,
 				1159D68A2B7843A300CE92E4 /* Views */,
 			);
@@ -502,10 +505,11 @@
 				1159D68E2B785AC500CE92E4 /* ElementsBuilder.swift in Sources */,
 				115E05FA2B7AC1D400118D73 /* CustomCell_CV.swift in Sources */,
 				115E05F62B7AAEF100118D73 /* DatailPresenter.swift in Sources */,
-				1159D6872B783F2C00CE92E4 /* AddViewController.swift in Sources */,
+				1159D6872B783F2C00CE92E4 /* CityAdd_VC.swift in Sources */,
 				1159D6892B78414C00CE92E4 /* CustomTextField.swift in Sources */,
 				11BDEDAD2B76F1F4005EEFB5 /* Router.swift in Sources */,
 				11BDEDAF2B76F1FD005EEFB5 /* Assembler.swift in Sources */,
+				11E815E42B815B6200BA7815 /* RatingStackView.swift in Sources */,
 				113B89242B7F0D4A00B875DB /* UserModel.swift in Sources */,
 				11BDEDB52B770F6D005EEFB5 /* MainPresenter.swift in Sources */,
 				1159D68C2B78498C00CE92E4 /* AddPresenter.swift in Sources */,

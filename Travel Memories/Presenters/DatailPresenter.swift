@@ -12,29 +12,45 @@ import Foundation
 protocol DetailViewOutputProtocol : AnyObject {
     func success()
     func failure()
+    
+    func loadTripInfo()
 }
 
 // от View
 protocol DetailPresenterOutputProtocol: AnyObject {
     
-    init(view: DetailViewController, modelManager: ModelManager, router: RouterProtocol)
+    init(view: DetailViewController, modelManager: ModelManager, router: RouterProtocol, city: CityModel)
     
-    var citys: [CityModel]? { get set }
-
+    var city: CityModel? { get set }
+    var trip: TripModel? { get set }
+    func setTrip(index: Int)
+    func changeDataOfTrip(currentPlace: String?, rating: Int?, comment: String?, typeOfTrip: String?)
 }
 
 class DatailPresenter: DetailPresenterOutputProtocol {
     
+    var city: CityModel?
+    var trip: TripModel?
+
     
     weak var view: DetailViewController?
     var router: RouterProtocol?
     let modelManager: ModelManagerProtocol!
     
-    required init(view: DetailViewController, modelManager: ModelManager, router: RouterProtocol) {
+    required init(view: DetailViewController, modelManager: ModelManager, router: RouterProtocol, city: CityModel) {
         self.view = view
         self.router = router
         self.modelManager = modelManager
+        self.city = city
+        print(city)
     }
     
-    var citys: [CityModel]?   
+    func setTrip(index: Int) {
+        self.trip = city?.posts[index]
+        view?.loadTripInfo()
+    }
+    
+    func changeDataOfTrip(currentPlace: String?, rating: Int?, comment: String?, typeOfTrip: String?) {
+        modelManager.changeTrip(id: self.trip!.id, currentPlace: currentPlace, rating: rating, comment: comment, typeOfTrip: typeOfTrip)
+    }
 }

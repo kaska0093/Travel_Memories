@@ -12,7 +12,7 @@ protocol AssemblerProtocol {
     func createMainModule(router: RouterProtocol) -> UIViewController
     func createAddModule(router: RouterProtocol, isEditingMode: Bool, id: String?) -> UIViewController
 
-    func createDetailModule(router: RouterProtocol) -> UIViewController
+    func createDetailModule(router: RouterProtocol, city: CityModel) -> UIViewController
 }
 
 class Assembler: AssemblerProtocol {
@@ -26,7 +26,7 @@ class Assembler: AssemblerProtocol {
     }
     
     func createAddModule(router: RouterProtocol, isEditingMode: Bool, id: String?) -> UIViewController {
-        let view = AddViewController()
+        let view = CityAdd_VC()
         let modelManager = ModelManager()
         if isEditingMode == false {
             let presenter = AddPresenter(view: view, modelManager: modelManager, router: router, isEditingMode: isEditingMode)
@@ -38,10 +38,10 @@ class Assembler: AssemblerProtocol {
         return view
     }
     
-    func createDetailModule(router: RouterProtocol) -> UIViewController {
+    func createDetailModule(router: RouterProtocol, city: CityModel) -> UIViewController {
         let view = DetailViewController()
         let modelManager = ModelManager()
-        let presenter = DatailPresenter(view: view, modelManager: modelManager, router: router)
+        let presenter = DatailPresenter(view: view, modelManager: modelManager, router: router, city: city)
         view.presenter = presenter
         return view
     }

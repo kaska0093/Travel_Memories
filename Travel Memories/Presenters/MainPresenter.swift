@@ -23,7 +23,7 @@ protocol MainPresenterOutputProtocol: AnyObject {
     var userAccountInfo: UserAccountInfo? { get set }
     
     func addButtonPressed(isEditingMode: Bool, id: String?)
-    func showDetailPressed()
+    func showDetailPressed(index: Int)
     func getAllCitis()
     func cleanAll()
     func deleteCertainObject(id: String)
@@ -32,6 +32,8 @@ protocol MainPresenterOutputProtocol: AnyObject {
     func saveUserInfo(name: String?, image: UIImage?)
     func getUserInfo()
     
+    //MARK: - Trip
+    func addTrip(index: Int, startDate: Date, endDate: Date)
 }
 
 
@@ -73,9 +75,9 @@ class MainPresenter: MainPresenterOutputProtocol {
         getAllCitis()
         getUserInfo()
     }
-    
+    //FIXME: можно объеденить две функции specificCity и deleteObjectFromRealm
     func deleteCertainObject(id: String) {
-        modelManager?.specificObject(id: id) {[weak self] result in
+        modelManager?.specificCity(id: id) {[weak self] result in
             switch result {
             case .success(let object):
                 self?.modelManager?.deleteObjectFromRealm(object: object!)
@@ -129,13 +131,26 @@ class MainPresenter: MainPresenterOutputProtocol {
             }
         })
     }
+    
+    //MARK: - trip
+    
+    func addTrip(index: Int, startDate: Date, endDate: Date) {
+        modelManager?.addTrip(object: citys![index],
+                              startData: startDate,
+                              end: endDate)
+    }
 
                   
     //MARK: - router methods
     func addButtonPressed(isEditingMode: Bool, id: String?) {
         router?.showAddViewController(isEditingMode: isEditingMode, id: id)
     }
-    func showDetailPressed() {
-        router?.showDetailViewController()
+    func showDetailPressed(index: Int) {
+        let currentCity = citys![index]
+        if currentCity.posts.isEmpty {
+            return
+        } else {
+            router?.showDetailViewController(city: citys![index])
+        }
     }
 }

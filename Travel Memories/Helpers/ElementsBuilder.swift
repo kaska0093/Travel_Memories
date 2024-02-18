@@ -28,6 +28,38 @@ class ElementsBuilder {
         return label
     }
     
+    static func createCollectionView() -> UICollectionView {
+        
+        let collectionViewLoyout = UICollectionViewFlowLayout()
+        collectionViewLoyout.scrollDirection = .horizontal
+        collectionViewLoyout.sectionInset = UIEdgeInsets.init(top: 0, left: 10, bottom: 0, right: 10) // отступ между секциями
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLoyout)
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        collectionView.layer.cornerRadius = 20
+        collectionView.showsHorizontalScrollIndicator = false
+        
+        return collectionView
+    }
+    static func createTextView() -> UITextView {
+        let view = UITextView()
+        view.layer.cornerRadius = 15
+        view.backgroundColor = .lightGray
+        return view
+    }
+    
+    static func createAddButton() -> UIButton {
+        let button = UIButton(type: .custom)
+        button.layer.cornerRadius = 3
+        button.clipsToBounds = true
+        button.backgroundColor = UIColor.systemBlue
+        button.setTitle("+", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        button.setTitleColor(UIColor.white, for: .normal)
+        return button
+    }
+    
 
     static func createMainTableView() -> UITableView {
         
@@ -52,4 +84,6 @@ class ElementsBuilder {
         
         return tableView
     }
+    
+
 }

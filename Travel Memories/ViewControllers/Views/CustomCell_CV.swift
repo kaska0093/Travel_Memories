@@ -7,56 +7,86 @@
 
 import UIKit
 
+//protocol CollectionViewCellDelegate: AnyObject {
+//    func didSelectItem(at index: Int)
+//}
+
+
 class CustomCell_CV: UICollectionViewCell {
-    
+    var selectionView = UIView()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.layer.cornerRadius = 15
         inizialization()
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let imageView: UIImageView = {
-        let view = UIImageView()
-        return view
+//    weak var delegate: CollectionViewCellDelegate?
+//    var index: Int = 0
+//    
+//    func selectItem() {
+//        delegate?.didSelectItem(at: index)
+//    }
+    
+
+    private let startTrip: UILabel = {
+        let label = UILabel()
+        return label
     }()
-//    private let temperatureLabel: UILabel = {
-//        let label = UILabel()
-//        return label
-//    }()
-//    private let hourLabel: UILabel = {
-//        let label = UILabel()
-//        return label
-//    }()
+    private let endtrip: UILabel = {
+        let label = UILabel()
+        return label
+    }()
     
     
-    func configure(image: UIImage?) {
-        imageView.image = image
+    func configure(startTrip: String, endTrip: String) {
+        self.startTrip.text = startTrip
+        self.endtrip.text = endTrip
+    }
+    /// Для установки линии под выбранной ячейкой CollectionView
+    /// - Parameter selected: ячейка выбрана или нет
+    func setSelected(_ selected: Bool) {
+        selectionView.isHidden = !selected
     }
 }
 
 private extension CustomCell_CV {
     func inizialization() {
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        //temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
-        //hourLabel.translatesAutoresizingMaskIntoConstraints = false
+        startTrip.translatesAutoresizingMaskIntoConstraints = false
+        endtrip.translatesAutoresizingMaskIntoConstraints = false
         
-        contentView.addSubview(imageView)
-//        contentView.addSubview(temperatureLabel)
-//        contentView.addSubview(hourLabel)
+        contentView.addSubview(startTrip)
+        contentView.addSubview(endtrip)
         
-        //hourLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        startTrip.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(5)
+        }
         
-        imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor,constant: 0).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        imageView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5).isActive = true
-        
-//        temperatureLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5).isActive = true
-//        temperatureLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor,constant: 0).isActive = true
+        endtrip.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(startTrip.snp.bottom).offset(5)
+        }
+    }
+}
 
+extension CustomCell_CV {
+    
+    private func commonInit() {
+        selectionView.backgroundColor = .green
+        selectionView.isHidden = true
+        contentView.addSubview(selectionView)
+
+        selectionView.snp.makeConstraints { (make) in
+            make.height.equalTo(3)
+            make.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(7)
+        }
     }
 }

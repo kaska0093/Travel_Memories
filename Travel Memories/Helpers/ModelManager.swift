@@ -20,7 +20,7 @@ protocol ModelManagerProtocol {
     /// - Parameters:
     ///   - id: id объекта для поиска
     ///   - complition: найденный объект/ ошибка о его отсутвии в БД
-    func specificObject(id: String, complition: @escaping (Result<CityModel?, Error>) -> Void)
+    func specificCity(id: String, complition: @escaping (Result<CityModel?, Error>) -> Void)
     func changeModelCities(object: CityModel, newName: String?, image: UIImage?)
 
     func deleteObjectFromRealm(object: Object)
@@ -28,7 +28,10 @@ protocol ModelManagerProtocol {
     func saveUserInfo(name: String?, image: UIImage?)
     func changeUserInfo(name: String?, image: UIImage?)
     func getUserInfo(complition: @escaping (Result<UserAccountInfo, Error>) -> Void)
-
+    
+    //MARK: - Trip
+    func addTrip(object: CityModel, startData: Date, end: Date) 
+    func changeTrip(id: String, currentPlace: String?, rating: Int?, comment: String?, typeOfTrip: String?)
 }
 
 //MARK: - ModelManagerProtocol
@@ -54,7 +57,7 @@ class ModelManager: ModelManagerProtocol {
             }
     }
     
-    func specificObject(id: String, complition: @escaping (Result<CityModel?, Error>) -> Void) {
+    func specificCity(id: String, complition: @escaping (Result<CityModel?, Error>) -> Void) {
         
         let test = NSPredicate(format: "id CONTAINS %@", id)
         if let object = mainRealm.objects(CityModel.self).filter(test).first {
@@ -115,6 +118,36 @@ class ModelManager: ModelManagerProtocol {
         }
     }
     
+    //MARK: - Trip
+            
+    func addTrip(object: CityModel, startData: Date, end: Date) {
+            try! mainRealm.write {
+                object.posts.append(TripModel(firstDate: startData, lastDate: end))
+            }
+    }
+    
+    func changeTrip(id: String, currentPlace: String?, rating: Int?, comment: String?, typeOfTrip: String?) {
+        try! mainRealm.write {
+            
+            let test = NSPredicate(format: "id CONTAINS %@", id)
+            if let object = mainRealm.objects(TripModel.self).filter(test).first {
+                print(object)
+                if let currentPlace {
+                    object.currentPlaces.append(currentPlace)
+                }
+                if let rating {
+                    object.raiting = rating
+                }
+                if let comment {
+                    object.tripDescription = comment
+                }
+                if let typeOfTrip {
+                    object.typeOfTrip = typeOfTrip
+                }
+            }
+        }
+    }
+    
     //MARK: - system
     func deleteAll() {
         try! mainRealm.write {
@@ -128,7 +161,7 @@ extension ModelManager {
     
     func migration() -> Realm.Configuration {
         
-        let config = Realm.Configuration(schemaVersion: 9) { migration, oldSchemaVersion in
+        let config = Realm.Configuration(schemaVersion: 14) { migration, oldSchemaVersion in
             if (oldSchemaVersion < 1) {
             }
         }
