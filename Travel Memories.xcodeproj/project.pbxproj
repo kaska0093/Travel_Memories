@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B415681906EF62BBD6E2D75 /* Pods_Travel_Memories_Travel_MemoriesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C906D370EACA10793FC906C /* Pods_Travel_Memories_Travel_MemoriesUITests.framework */; };
 		113B89242B7F0D4A00B875DB /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B89232B7F0D4A00B875DB /* UserModel.swift */; };
 		1159D6872B783F2C00CE92E4 /* CityAdd_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D6862B783F2C00CE92E4 /* CityAdd_VC.swift */; };
 		1159D6892B78414C00CE92E4 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1159D6882B78414C00CE92E4 /* CustomTextField.swift */; };
@@ -20,9 +19,10 @@
 		1182F1AF2B75DA0E0018BA76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F1AE2B75DA0E0018BA76 /* SceneDelegate.swift */; };
 		1182F1B62B75DA100018BA76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1182F1B52B75DA100018BA76 /* Assets.xcassets */; };
 		1182F1B92B75DA100018BA76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1182F1B72B75DA100018BA76 /* LaunchScreen.storyboard */; };
-		1182F1C42B75DA100018BA76 /* Travel_MemoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F1C32B75DA100018BA76 /* Travel_MemoriesTests.swift */; };
-		1182F1CE2B75DA110018BA76 /* Travel_MemoriesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F1CD2B75DA110018BA76 /* Travel_MemoriesUITests.swift */; };
-		1182F1D02B75DA110018BA76 /* Travel_MemoriesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1182F1CF2B75DA110018BA76 /* Travel_MemoriesUITestsLaunchTests.swift */; };
+		11933C182B87E7140064B583 /* AssemblerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11933C172B87E7140064B583 /* AssemblerTests.swift */; };
+		11933C1A2B87ECC10064B583 /* PresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11933C192B87ECC10064B583 /* PresenterTests.swift */; };
+		11933C1F2B8866EB0064B583 /* MainPresenterLogicSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11933C1E2B8866EB0064B583 /* MainPresenterLogicSpy.swift */; };
+		11933C212B886E330064B583 /* MainViewLogicSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11933C202B886E330064B583 /* MainViewLogicSpy.swift */; };
 		11BDEDAD2B76F1F4005EEFB5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDEDAC2B76F1F4005EEFB5 /* Router.swift */; };
 		11BDEDAF2B76F1FD005EEFB5 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDEDAE2B76F1FD005EEFB5 /* Assembler.swift */; };
 		11BDEDB12B76F359005EEFB5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDEDB02B76F359005EEFB5 /* MainViewController.swift */; };
@@ -30,19 +30,12 @@
 		11BDEDB52B770F6D005EEFB5 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDEDB42B770F6D005EEFB5 /* MainPresenter.swift */; };
 		11BDEDB72B7722F0005EEFB5 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BDEDB62B7722F0005EEFB5 /* ModelManager.swift */; };
 		11E815E42B815B6200BA7815 /* RatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E815E32B815B6200BA7815 /* RatingStackView.swift */; };
-		E56A24777B163CC2D137B410 /* Pods_Travel_MemoriesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75F3D596C71C26BACDB40FB /* Pods_Travel_MemoriesTests.framework */; };
+		11F1B81A2B87102A0026FD70 /* Travel_MemoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F1B8192B87102A0026FD70 /* Travel_MemoriesTests.swift */; };
 		F10F745A6537429585F04C38 /* Pods_Travel_Memories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9543D0614B6D3CB5813D8D8D /* Pods_Travel_Memories.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1182F1C02B75DA100018BA76 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1182F1A12B75DA0E0018BA76 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1182F1A82B75DA0E0018BA76;
-			remoteInfo = "Travel Memories";
-		};
-		1182F1CA2B75DA100018BA76 /* PBXContainerItemProxy */ = {
+		11F1B81B2B87102A0026FD70 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1182F1A12B75DA0E0018BA76 /* Project object */;
 			proxyType = 1;
@@ -66,11 +59,10 @@
 		1182F1B52B75DA100018BA76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1182F1B82B75DA100018BA76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1182F1BA2B75DA100018BA76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1182F1BF2B75DA100018BA76 /* Travel MemoriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Travel MemoriesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1182F1C32B75DA100018BA76 /* Travel_MemoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel_MemoriesTests.swift; sourceTree = "<group>"; };
-		1182F1C92B75DA100018BA76 /* Travel MemoriesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Travel MemoriesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1182F1CD2B75DA110018BA76 /* Travel_MemoriesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel_MemoriesUITests.swift; sourceTree = "<group>"; };
-		1182F1CF2B75DA110018BA76 /* Travel_MemoriesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel_MemoriesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		11933C172B87E7140064B583 /* AssemblerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerTests.swift; sourceTree = "<group>"; };
+		11933C192B87ECC10064B583 /* PresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterTests.swift; sourceTree = "<group>"; };
+		11933C1E2B8866EB0064B583 /* MainPresenterLogicSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterLogicSpy.swift; sourceTree = "<group>"; };
+		11933C202B886E330064B583 /* MainViewLogicSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewLogicSpy.swift; sourceTree = "<group>"; };
 		11BDEDAC2B76F1F4005EEFB5 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		11BDEDAE2B76F1FD005EEFB5 /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
 		11BDEDB02B76F359005EEFB5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +70,8 @@
 		11BDEDB42B770F6D005EEFB5 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		11BDEDB62B7722F0005EEFB5 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
 		11E815E32B815B6200BA7815 /* RatingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStackView.swift; sourceTree = "<group>"; };
+		11F1B8172B87102A0026FD70 /* Travel MemoriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Travel MemoriesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11F1B8192B87102A0026FD70 /* Travel_MemoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Travel_MemoriesTests.swift; sourceTree = "<group>"; };
 		27ABDA1508F68807BEB6DCFA /* Pods-Travel MemoriesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travel MemoriesTests.release.xcconfig"; path = "Target Support Files/Pods-Travel MemoriesTests/Pods-Travel MemoriesTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C906D370EACA10793FC906C /* Pods_Travel_Memories_Travel_MemoriesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Travel_Memories_Travel_MemoriesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C7FF2B698F512EFCF61AF9 /* Pods-Travel Memories-Travel MemoriesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Travel Memories-Travel MemoriesUITests.debug.xcconfig"; path = "Target Support Files/Pods-Travel Memories-Travel MemoriesUITests/Pods-Travel Memories-Travel MemoriesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,19 +92,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1182F1BC2B75DA100018BA76 /* Frameworks */ = {
+		11F1B8142B87102A0026FD70 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E56A24777B163CC2D137B410 /* Pods_Travel_MemoriesTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1182F1C62B75DA100018BA76 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0B415681906EF62BBD6E2D75 /* Pods_Travel_Memories_Travel_MemoriesUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,8 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				1182F1AB2B75DA0E0018BA76 /* Travel Memories */,
-				1182F1C22B75DA100018BA76 /* Travel MemoriesTests */,
-				1182F1CC2B75DA110018BA76 /* Travel MemoriesUITests */,
+				11F1B8182B87102A0026FD70 /* Travel MemoriesTests */,
 				1182F1AA2B75DA0E0018BA76 /* Products */,
 				AF9D70F26945E7D825DC8C4F /* Pods */,
 				065BE68C4E45038EC2C77D93 /* Frameworks */,
@@ -153,8 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				1182F1A92B75DA0E0018BA76 /* Travel Memories.app */,
-				1182F1BF2B75DA100018BA76 /* Travel MemoriesTests.xctest */,
-				1182F1C92B75DA100018BA76 /* Travel MemoriesUITests.xctest */,
+				11F1B8172B87102A0026FD70 /* Travel MemoriesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,21 +155,13 @@
 			path = "Travel Memories";
 			sourceTree = "<group>";
 		};
-		1182F1C22B75DA100018BA76 /* Travel MemoriesTests */ = {
+		11933C1D2B8866220064B583 /* Spies */ = {
 			isa = PBXGroup;
 			children = (
-				1182F1C32B75DA100018BA76 /* Travel_MemoriesTests.swift */,
+				11933C1E2B8866EB0064B583 /* MainPresenterLogicSpy.swift */,
+				11933C202B886E330064B583 /* MainViewLogicSpy.swift */,
 			);
-			path = "Travel MemoriesTests";
-			sourceTree = "<group>";
-		};
-		1182F1CC2B75DA110018BA76 /* Travel MemoriesUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1182F1CD2B75DA110018BA76 /* Travel_MemoriesUITests.swift */,
-				1182F1CF2B75DA110018BA76 /* Travel_MemoriesUITestsLaunchTests.swift */,
-			);
-			path = "Travel MemoriesUITests";
+			path = Spies;
 			sourceTree = "<group>";
 		};
 		11BDEDA42B76E1BF005EEFB5 /* Application */ = {
@@ -249,6 +224,17 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		11F1B8182B87102A0026FD70 /* Travel MemoriesTests */ = {
+			isa = PBXGroup;
+			children = (
+				11F1B8192B87102A0026FD70 /* Travel_MemoriesTests.swift */,
+				11933C172B87E7140064B583 /* AssemblerTests.swift */,
+				11933C192B87ECC10064B583 /* PresenterTests.swift */,
+				11933C1D2B8866220064B583 /* Spies */,
+			);
+			path = "Travel MemoriesTests";
+			sourceTree = "<group>";
+		};
 		AF9D70F26945E7D825DC8C4F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,44 +270,23 @@
 			productReference = 1182F1A92B75DA0E0018BA76 /* Travel Memories.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1182F1BE2B75DA100018BA76 /* Travel MemoriesTests */ = {
+		11F1B8162B87102A0026FD70 /* Travel MemoriesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1182F1D62B75DA110018BA76 /* Build configuration list for PBXNativeTarget "Travel MemoriesTests" */;
+			buildConfigurationList = 11F1B81D2B87102A0026FD70 /* Build configuration list for PBXNativeTarget "Travel MemoriesTests" */;
 			buildPhases = (
-				CEB66690D6F8D2778E250117 /* [CP] Check Pods Manifest.lock */,
-				1182F1BB2B75DA100018BA76 /* Sources */,
-				1182F1BC2B75DA100018BA76 /* Frameworks */,
-				1182F1BD2B75DA100018BA76 /* Resources */,
+				11F1B8132B87102A0026FD70 /* Sources */,
+				11F1B8142B87102A0026FD70 /* Frameworks */,
+				11F1B8152B87102A0026FD70 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1182F1C12B75DA100018BA76 /* PBXTargetDependency */,
+				11F1B81C2B87102A0026FD70 /* PBXTargetDependency */,
 			);
 			name = "Travel MemoriesTests";
 			productName = "Travel MemoriesTests";
-			productReference = 1182F1BF2B75DA100018BA76 /* Travel MemoriesTests.xctest */;
+			productReference = 11F1B8172B87102A0026FD70 /* Travel MemoriesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		1182F1C82B75DA100018BA76 /* Travel MemoriesUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1182F1D92B75DA110018BA76 /* Build configuration list for PBXNativeTarget "Travel MemoriesUITests" */;
-			buildPhases = (
-				1BE754FA901130DEA90ED1FE /* [CP] Check Pods Manifest.lock */,
-				1182F1C52B75DA100018BA76 /* Sources */,
-				1182F1C62B75DA100018BA76 /* Frameworks */,
-				1182F1C72B75DA100018BA76 /* Resources */,
-				6817B9A7B884F9A7FCA0AFAF /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1182F1CB2B75DA100018BA76 /* PBXTargetDependency */,
-			);
-			name = "Travel MemoriesUITests";
-			productName = "Travel MemoriesUITests";
-			productReference = 1182F1C92B75DA100018BA76 /* Travel MemoriesUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -336,11 +301,7 @@
 					1182F1A82B75DA0E0018BA76 = {
 						CreatedOnToolsVersion = 15.2;
 					};
-					1182F1BE2B75DA100018BA76 = {
-						CreatedOnToolsVersion = 15.2;
-						TestTargetID = 1182F1A82B75DA0E0018BA76;
-					};
-					1182F1C82B75DA100018BA76 = {
+					11F1B8162B87102A0026FD70 = {
 						CreatedOnToolsVersion = 15.2;
 						TestTargetID = 1182F1A82B75DA0E0018BA76;
 					};
@@ -362,8 +323,7 @@
 			projectRoot = "";
 			targets = (
 				1182F1A82B75DA0E0018BA76 /* Travel Memories */,
-				1182F1BE2B75DA100018BA76 /* Travel MemoriesTests */,
-				1182F1C82B75DA100018BA76 /* Travel MemoriesUITests */,
+				11F1B8162B87102A0026FD70 /* Travel MemoriesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -378,14 +338,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1182F1BD2B75DA100018BA76 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1182F1C72B75DA100018BA76 /* Resources */ = {
+		11F1B8152B87102A0026FD70 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -412,28 +365,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Travel Memories/Pods-Travel Memories-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1BE754FA901130DEA90ED1FE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Travel Memories-Travel MemoriesUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3F8B1B86C676F21D85FAEDEC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -450,45 +381,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Travel Memories-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6817B9A7B884F9A7FCA0AFAF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Travel Memories-Travel MemoriesUITests/Pods-Travel Memories-Travel MemoriesUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Travel Memories-Travel MemoriesUITests/Pods-Travel Memories-Travel MemoriesUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Travel Memories-Travel MemoriesUITests/Pods-Travel Memories-Travel MemoriesUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CEB66690D6F8D2778E250117 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Travel MemoriesTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -522,35 +414,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1182F1BB2B75DA100018BA76 /* Sources */ = {
+		11F1B8132B87102A0026FD70 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1182F1C42B75DA100018BA76 /* Travel_MemoriesTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1182F1C52B75DA100018BA76 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1182F1CE2B75DA110018BA76 /* Travel_MemoriesUITests.swift in Sources */,
-				1182F1D02B75DA110018BA76 /* Travel_MemoriesUITestsLaunchTests.swift in Sources */,
+				11933C1F2B8866EB0064B583 /* MainPresenterLogicSpy.swift in Sources */,
+				11933C182B87E7140064B583 /* AssemblerTests.swift in Sources */,
+				11933C212B886E330064B583 /* MainViewLogicSpy.swift in Sources */,
+				11F1B81A2B87102A0026FD70 /* Travel_MemoriesTests.swift in Sources */,
+				11933C1A2B87ECC10064B583 /* PresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1182F1C12B75DA100018BA76 /* PBXTargetDependency */ = {
+		11F1B81C2B87102A0026FD70 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1182F1A82B75DA0E0018BA76 /* Travel Memories */;
-			targetProxy = 1182F1C02B75DA100018BA76 /* PBXContainerItemProxy */;
-		};
-		1182F1CB2B75DA100018BA76 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1182F1A82B75DA0E0018BA76 /* Travel Memories */;
-			targetProxy = 1182F1CA2B75DA100018BA76 /* PBXContainerItemProxy */;
+			targetProxy = 11F1B81B2B87102A0026FD70 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -749,17 +631,15 @@
 			};
 			name = Release;
 		};
-		1182F1D72B75DA110018BA76 /* Debug */ = {
+		11F1B81E2B87102A0026FD70 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E51BB46375888BAE06DB862 /* Pods-Travel MemoriesTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 45KC6823ML;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kaska.Travel-MemoriesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -770,17 +650,15 @@
 			};
 			name = Debug;
 		};
-		1182F1D82B75DA110018BA76 /* Release */ = {
+		11F1B81F2B87102A0026FD70 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27ABDA1508F68807BEB6DCFA /* Pods-Travel MemoriesTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 45KC6823ML;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kaska.Travel-MemoriesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -788,44 +666,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Travel Memories.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Travel Memories";
-			};
-			name = Release;
-		};
-		1182F1DA2B75DA110018BA76 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49C7FF2B698F512EFCF61AF9 /* Pods-Travel Memories-Travel MemoriesUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 45KC6823ML;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kaska.Travel-MemoriesUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Travel Memories";
-			};
-			name = Debug;
-		};
-		1182F1DB2B75DA110018BA76 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8982235FA5FE9D9A76D19F01 /* Pods-Travel Memories-Travel MemoriesUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 45KC6823ML;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kaska.Travel-MemoriesUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Travel Memories";
 			};
 			name = Release;
 		};
@@ -850,20 +690,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1182F1D62B75DA110018BA76 /* Build configuration list for PBXNativeTarget "Travel MemoriesTests" */ = {
+		11F1B81D2B87102A0026FD70 /* Build configuration list for PBXNativeTarget "Travel MemoriesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1182F1D72B75DA110018BA76 /* Debug */,
-				1182F1D82B75DA110018BA76 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1182F1D92B75DA110018BA76 /* Build configuration list for PBXNativeTarget "Travel MemoriesUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1182F1DA2B75DA110018BA76 /* Debug */,
-				1182F1DB2B75DA110018BA76 /* Release */,
+				11F1B81E2B87102A0026FD70 /* Debug */,
+				11F1B81F2B87102A0026FD70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

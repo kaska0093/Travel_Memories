@@ -42,6 +42,7 @@ class ElementsBuilder {
         
         return collectionView
     }
+    
     static func createTextView() -> UITextView {
         let view = UITextView()
         view.layer.cornerRadius = 15

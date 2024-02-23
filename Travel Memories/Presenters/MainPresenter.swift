@@ -15,15 +15,19 @@ protocol MainViewOutputProtocol : AnyObject {
 }
 
 // от View
-protocol MainPresenterOutputProtocol: AnyObject {
-    
+
+protocol SmallPartMainPresenterOutputProtocol: AnyObject {
+    func showDetailPressed(index: Int)
+}
+
+protocol MainPresenterOutputProtocol: SmallPartMainPresenterOutputProtocol, AnyObject {
     init(view: MainViewOutputProtocol, modelManager: ModelManager, router: RouterProtocol)
+
     
     var citys: [CityModel]? { get set }
     var userAccountInfo: UserAccountInfo? { get set }
     
     func addButtonPressed(isEditingMode: Bool, id: String?)
-    func showDetailPressed(index: Int)
     func getAllCitis()
     func cleanAll()
     func deleteCertainObject(id: String)

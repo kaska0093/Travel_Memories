@@ -13,6 +13,7 @@ import SnapKit
 final class MainViewController: UIViewController {
 
     var presenter: MainPresenterOutputProtocol!
+
     
     //MARK: - Private Property
 
@@ -151,6 +152,8 @@ private extension MainViewController {
 
 //MARK: - MainViewOutputProtocol
 extension MainViewController: MainViewOutputProtocol {
+
+
     
     func loadUserInfo() {
         userName.text = presenter.userAccountInfo?.name

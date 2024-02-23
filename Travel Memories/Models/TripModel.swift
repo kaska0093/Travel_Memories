@@ -51,14 +51,12 @@ class TripModel: Object {
     override static func primaryKey() -> String? {
         return "id"
     }
-    convenience init(firstDate: Date, lastDate: Date) { //tripDescription: String?,     rating: Int, typeOfTrip: TypeOfTrip?)
+    convenience init(firstDate: Date, lastDate: Date) { 
 
         self.init()
         self.firstDate = firstDate
         self.lastDate = lastDate
-        //self.tripDescription = tripDescription
-        //self.raiting = rating
-        //self.typeOfTrip = typeOfTrip?.rawValue
+
     }
 }
 enum TypeOfTrip: String {
